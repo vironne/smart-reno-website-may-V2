@@ -65,8 +65,10 @@
   .nav-left{display:flex;gap:34px;align-items:center;justify-self:start}
   .nav-left a{font-size:14.5px;color:var(--muted);transition:color .2s}
   .nav-left a:hover{color:var(--ink)}
-  .brand{font-size:15px;font-weight:500;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:10px;justify-self:center;white-space:nowrap}
-  .brand .dot{width:7px;height:7px;border-radius:999px;background:var(--ink);display:inline-block}
+  .brand{font-size:15px;font-weight:500;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:12px;justify-self:center;white-space:nowrap}
+  .brand-mark{width:38px;height:38px;flex:none;display:block}
+  html.dark .brand-mark .ring-bg{fill:#0a0908}
+  .footer-mark{width:30px;height:30px;flex:none;vertical-align:middle;margin-right:10px}
   .nav-right{display:flex;align-items:center;gap:14px;justify-self:end}
   .nav-phone{font-family:var(--mono);font-size:13px;color:var(--muted)}
   @media (max-width:860px){
@@ -287,6 +289,32 @@ function useReveal(){
   },[]);
 }
 
+/* ---------- logo (inline svg) ---------- */
+function Logo({ className="brand-mark", id="lg" }){
+  const pathId = id+"-arc";
+  return (
+    <svg className={className} viewBox="0 0 120 120" role="img" aria-label="smart renovation" xmlns="http://www.w3.org/2000/svg">
+      {/* outer ring: green left half + red right half */}
+      <path d="M 60,4 A 56,56 0 0,0 60,116 Z" fill="#1f7a3a"/>
+      <path d="M 60,4 A 56,56 0 0,1 60,116 Z" fill="#d2342c"/>
+      {/* white inner disc carving the ring */}
+      <circle className="ring-bg" cx="60" cy="60" r="48" fill="#ffffff"/>
+      {/* curved text path (full circle, clockwise from top) */}
+      <defs>
+        <path id={pathId} d="M 60,18 a 42,42 0 1,1 -0.001,0" fill="none"/>
+      </defs>
+      <text fill="#111110" fontFamily="Inter, sans-serif" fontSize="7.6" fontWeight="700" letterSpacing="1.6">
+        <textPath href={"#"+pathId} startOffset="0">SMART · RENOVATION · SMART · RENOVATION ·</textPath>
+      </text>
+      {/* house silhouette */}
+      <g transform="translate(60,62)" fill="#111110">
+        <path d="M -17,-3 L 0,-20 L 17,-3 L 17,16 L -17,16 Z"/>
+        <rect x="-4.5" y="3" width="9" height="13" fill="#ffffff"/>
+      </g>
+    </svg>
+  );
+}
+
 /* ---------- components ---------- */
 function Nav({ onBook }){
   return (
@@ -297,7 +325,7 @@ function Nav({ onBook }){
           <a href="#works">work</a>
           <a href="#process">process</a>
         </nav>
-        <a href="#" className="brand"><span className="dot"/>smart renovation</a>
+        <a href="#" className="brand"><Logo id="nav-logo"/>smart renovation</a>
         <div className="nav-right">
           <span className="nav-phone">+971 4 000 0000</span>
           <button className="btn btn-ink btn-sm" onClick={onBook}>book consultation</button>
