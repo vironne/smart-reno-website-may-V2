@@ -91,11 +91,32 @@
   .lead-form input::placeholder{color:var(--muted)}
   .micro{font-size:12.5px;color:var(--muted);margin-top:16px;font-family:var(--mono);letter-spacing:.02em}
 
-  /* hero photo */
-  .hero-photo{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--paper)}
-  .hero-photo img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease-out}
-  .hero-photo:hover img{transform:scale(1.02)}
-  .hero-photo-meta{position:absolute;left:24px;bottom:20px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:#fff;text-transform:uppercase;mix-blend-mode:difference}
+  /* hero carousel */
+  .carousel{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--paper)}
+  .carousel::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,0));pointer-events:none;z-index:1}
+  .slides{position:absolute;inset:0}
+  .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s cubic-bezier(.2,.8,.2,1)}
+  .slide.on{opacity:1}
+  .slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 7s ease-out}
+  .slide.on img{transform:scale(1)}
+  .car-meta{position:absolute;left:32px;right:32px;bottom:30px;display:flex;justify-content:space-between;align-items:end;color:#fff;z-index:2;gap:24px}
+  .car-meta .eyebrow{color:rgba(255,255,255,.7)}
+  .car-title{font-size:clamp(20px,1.8vw,26px);font-weight:500;letter-spacing:-.01em;margin-top:8px;line-height:1.15;max-width:38ch}
+  .car-sub{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:rgba(255,255,255,.78);margin-top:6px}
+  .car-nav{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.85);flex:none}
+  .car-arrow{width:42px;height:42px;border-radius:999px;border:1px solid rgba(255,255,255,.45);color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s,border-color .25s;background:transparent;cursor:pointer}
+  .car-arrow:hover{background:#fff;color:#111;border-color:#fff}
+  .car-count b{font-weight:500;color:#fff}
+  .car-dots{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:6px;z-index:3}
+  .car-dot{width:28px;height:2px;background:rgba(255,255,255,.35);cursor:pointer;border:0;padding:0;transition:background .3s}
+  .car-dot.on{background:#fff}
+  .car-progress{position:absolute;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,.18);z-index:3}
+  .car-progress-bar{height:100%;background:#fff;width:0;transition:width 5.5s linear}
+  .car-progress-bar.run{width:100%}
+  @media (max-width:680px){
+    .car-meta{left:18px;right:18px;bottom:50px;flex-direction:column;align-items:flex-start;gap:16px}
+    .car-nav{align-self:flex-end}
+  }
 
   /* trust bar */
   .trust{padding:60px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -352,11 +373,56 @@ function Hero({ onBook }){
   );
 }
 
-function HeroPhoto(){
+const HERO_SLIDES = [
+  { img:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=2400&q=85&auto=format&fit=crop", title:"palm jumeirah villa", meta:"residential · 8,400 sqft · handover q1 2026", tag:"villa renovation" },
+  { img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=2400&q=85&auto=format&fit=crop", title:"emirates hills residence", meta:"private home · 6,200 sqft · in build", tag:"design-build" },
+  { img:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=2400&q=85&auto=format&fit=crop", title:"downtown sky kitchen", meta:"apartment · burj district · q4 2025", tag:"kitchen design" },
+  { img:"https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=2400&q=85&auto=format&fit=crop", title:"jumeirah spa retreat", meta:"wellness suite · 1,800 sqft", tag:"bathroom & spa" },
+  { img:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=2400&q=85&auto=format&fit=crop", title:"difc creative studio", meta:"office fit-out · 4,100 sqft · delivered", tag:"commercial" },
+  { img:"https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=2400&q=85&auto=format&fit=crop", title:"al barari garden home", meta:"villa · 5,600 sqft · in design", tag:"villa renovation" },
+];
+
+function HeroCarousel(){
+  const [i,setI] = useState(0);
+  const [paused,setPaused] = useState(false);
+  const N = HERO_SLIDES.length;
+  const INTERVAL = 5500;
+
+  useEffect(()=>{
+    if(paused) return;
+    const t = setTimeout(()=> setI(p => (p+1) % N), INTERVAL);
+    return ()=> clearTimeout(t);
+  },[i, paused, N]);
+
+  const go = (n)=> setI(((n%N)+N)%N);
+
   return (
-    <div className="hero-photo reveal">
-      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=2400&q=80&auto=format&fit=crop" alt="dubai villa renovation interior" loading="eager"/>
-      <span className="hero-photo-meta">project 142 · palm jumeirah · handover q1 2026</span>
+    <div className="carousel reveal" onMouseEnter={()=>setPaused(true)} onMouseLeave={()=>setPaused(false)}>
+      <div className="car-progress"><div key={i+"-"+paused} className={"car-progress-bar"+(paused?"":" run")}/></div>
+      <div className="slides">
+        {HERO_SLIDES.map((s,idx)=>(
+          <div key={idx} className={"slide"+(idx===i?" on":"")}>
+            <img src={s.img} alt={s.title} loading={idx===0?"eager":"lazy"} fetchpriority={idx===0?"high":"auto"}/>
+          </div>
+        ))}
+      </div>
+      <div className="car-meta">
+        <div>
+          <div className="eyebrow">selected work · {HERO_SLIDES[i].tag}</div>
+          <div className="car-title">{HERO_SLIDES[i].title}</div>
+          <div className="car-sub">{HERO_SLIDES[i].meta}</div>
+        </div>
+        <div className="car-nav">
+          <button className="car-arrow" onClick={()=>go(i-1)} aria-label="previous slide">←</button>
+          <span className="car-count"><b>{String(i+1).padStart(2,"0")}</b> / {String(N).padStart(2,"0")}</span>
+          <button className="car-arrow" onClick={()=>go(i+1)} aria-label="next slide">→</button>
+        </div>
+      </div>
+      <div className="car-dots">
+        {HERO_SLIDES.map((_,idx)=>(
+          <button key={idx} className={"car-dot"+(idx===i?" on":"")} onClick={()=>go(idx)} aria-label={`view slide ${idx+1}`}/>
+        ))}
+      </div>
     </div>
   );
 }
@@ -654,7 +720,7 @@ function App(){
     <>
       <Nav onBook={book}/>
       <Hero onBook={book}/>
-      <div className="container reveal" style={{padding:'0 var(--pad-x)'}}><HeroPhoto/></div>
+      <div className="container" style={{padding:'0 var(--pad-x)'}}><HeroCarousel/></div>
       <div style={{height:96}}/>
       <TrustBar/>
       <div style={{height:96}}/>
