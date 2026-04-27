@@ -160,8 +160,8 @@
   .svc{display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:32px;align-items:center;padding:36px 0;border-bottom:1px solid var(--line);transition:padding .35s ease}
   .svc:hover{padding-left:14px;padding-right:14px}
   .svc-name{font-size:clamp(22px,2.2vw,30px);font-weight:400;letter-spacing:-.015em}
-  .svc-price,.svc-dur{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.03em}
-  .svc-price b{color:var(--ink);font-weight:500}
+  .svc-note{font-size:14px;color:var(--muted);max-width:32ch;line-height:1.5}
+  .svc-dur{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em}
   @media (max-width:860px){.svc{grid-template-columns:1fr;gap:8px;padding:28px 0}.svc-cta{justify-self:start;margin-top:8px}}
 
   /* process */
@@ -263,40 +263,40 @@ const { useState, useEffect, useRef } = React;
 
 /* ---------- data ---------- */
 const WORKS = [
-  { title:"emirates hills villa", loc:"Emirates Hills · 8,400 sqft", img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80&auto=format&fit=crop", budget:"AED 6.2M", time:"7 months" },
-  { title:"downtown sky residence", loc:"Burj Khalifa District · 3,200 sqft", img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format&fit=crop", budget:"AED 1.8M", time:"4 months" },
-  { title:"al barari garden home", loc:"Al Barari · 5,600 sqft", img:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600&q=80&auto=format&fit=crop", budget:"AED 3.9M", time:"6 months" },
-  { title:"difc creative office", loc:"DIFC Gate Avenue · 4,100 sqft", img:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80&auto=format&fit=crop", budget:"AED 2.4M", time:"5 months" },
+  { title:"emirates hills villa", loc:"Emirates Hills · 8,400 sqft", img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80&auto=format&fit=crop", typology:"Private residence", year:"2025" },
+  { title:"downtown sky residence", loc:"Burj Khalifa District · 3,200 sqft", img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format&fit=crop", typology:"Apartment", year:"2025" },
+  { title:"al barari garden home", loc:"Al Barari · 5,600 sqft", img:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600&q=80&auto=format&fit=crop", typology:"Family villa", year:"2024" },
+  { title:"difc creative office", loc:"DIFC Gate Avenue · 4,100 sqft", img:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80&auto=format&fit=crop", typology:"Workplace", year:"2024" },
 ];
 
 const SERVICES = [
-  { name:"villa renovation", from:"AED 2.5M", dur:"6–9 months" },
-  { name:"apartment renovation", from:"AED 450K", dur:"3–5 months" },
-  { name:"kitchen design", from:"AED 280K", dur:"8–12 weeks" },
-  { name:"bathroom & spa", from:"AED 180K", dur:"6–10 weeks" },
-  { name:"office fit-out", from:"AED 1.2M", dur:"4–6 months" },
-  { name:"landscape & outdoor", from:"AED 350K", dur:"3–5 months" },
+  { name:"villa renovation",      note:"Full-property design, build & handover",    dur:"6–9 months" },
+  { name:"apartment renovation",  note:"Full-residence transformation",             dur:"3–5 months" },
+  { name:"kitchen design",        note:"Bespoke kitchen architecture",              dur:"8–12 weeks" },
+  { name:"bathroom & spa",        note:"Wet-rooms, hammams & wellness suites",      dur:"6–10 weeks" },
+  { name:"office fit-out",        note:"Workplace & commercial interiors",          dur:"4–6 months" },
+  { name:"landscape & outdoor",   note:"Gardens, terraces, pools & majlis",         dur:"3–5 months" },
 ];
 
 const PROCESS = [
-  { name:"discovery call", dur:"45 min", body:"A free conversation about your property, goals, and budget. No commitment." },
-  { name:"fixed-price quote", dur:"7 days", body:"Full scope, material palette, timeline, and locked price — delivered in writing." },
-  { name:"design & approvals", dur:"6–12 weeks", body:"Concepts, visualisations, municipality submissions — handled for you." },
+  { name:"discovery", dur:"45 min", body:"A private conversation about your property, ambition, and timeline." },
+  { name:"written proposal", dur:"7 days", body:"Full scope, material palette, timeline and a fixed proposal — delivered in writing." },
+  { name:"design & approvals", dur:"6–12 weeks", body:"Concepts, visualisations, municipality submissions — held by the studio." },
   { name:"build & handover", dur:"3–9 months", body:"Weekly progress updates, on-site QA, on-time keys. Guaranteed." },
 ];
 
 const QUOTES = [
-  { text:"They quoted in six days, started in three weeks, and handed over the villa two days early. Unheard of in Dubai.", by:"Layla H.", meta:"Emirates Hills · AED 6.2M villa" },
-  { text:"One team handled design, permits, and build. We never had to chase a contractor or a consultant once.", by:"Marc R.", meta:"DIFC office fit-out · AED 2.4M" },
-  { text:"The fixed price held to the dirham. Weekly site walks, transparent reporting, no surprises at handover.", by:"Aisha & Omar K.", meta:"Downtown apartment · AED 1.8M" },
+  { text:"They proposed in six days, started in three weeks, and handed over the villa two days early. Unheard of in Dubai.", by:"Layla H.", meta:"Emirates Hills · private residence" },
+  { text:"One team held design, permits and build. We never had to chase a contractor or a consultant once.", by:"Marc R.", meta:"DIFC · workplace" },
+  { text:"The proposal held to the line. Weekly site walks, transparent reporting, no surprises at handover.", by:"Aisha & Omar K.", meta:"Downtown · apartment" },
 ];
 
 const FAQS = [
   { q:"How long does a typical renovation take?", a:"Apartments: 3–5 months. Villas: 6–9 months. Commercial: 4–6 months. We lock the timeline in the contract and hit 98% of dates." },
-  { q:"How do you price? Will there be surprises?", a:"Fixed-price quote within 7 days of the site visit. No hidden extras, no change-order games. If we miss, we cover it." },
-  { q:"Do you handle permits, RERA and DCD approvals?", a:"Yes — we are RERA, DED and Dubai Civil Defence licensed. Permits, NOCs and municipality submissions managed end-to-end." },
-  { q:"Can I stay in my home during the renovation?", a:"Usually not for villas and full-apartment jobs. We sequence partial renovations so you can stay when possible — confirmed at design phase." },
-  { q:"What's the smallest project you take?", a:"A single kitchen or bathroom, typically starting at AED 180K. We do not take purely decorative work." },
+  { q:"How does pricing work? Will there be surprises?", a:"After a private site visit we issue a written, fixed proposal within seven days. No hidden extras, no change-order games — the proposal you sign is the proposal we deliver against." },
+  { q:"Do you handle permits, RERA and DCD approvals?", a:"Yes — we are RERA, DED and Dubai Civil Defence licensed. Permits, NOCs and municipality submissions are held by the studio, end-to-end." },
+  { q:"Can I stay in my home during the renovation?", a:"Usually not for villas and full-apartment projects. Where it is feasible, we sequence partial works so you can remain in the property — confirmed during the design phase." },
+  { q:"What kind of projects do you take on?", a:"Projects where design rigour matters. From a single kitchen or bathroom to a full villa or office. We do not take on purely decorative work." },
 ];
 
 /* ---------- reveal hook ---------- */
@@ -365,12 +365,12 @@ function Hero({ onBook }){
       <div className="hero-inner">
         <span className="badge"><span className="pulse"/>accepting 4 residential commissions · q3 2026</span>
         <h1 className="display h1">dubai renovations,<br/>delivered on time —<br/>every time.</h1>
-        <p className="lede">design-build studio for villas, apartments and offices. one fixed price, one fixed date, one team from first sketch to final handover.</p>
+        <p className="lede">design-build studio for villas, apartments and offices. one team, one written proposal, one fixed date — from first sketch to final handover.</p>
         <form className="lead-form" onSubmit={(e)=>{e.preventDefault(); onBook();}}>
           <input type="email" placeholder="your email address" required/>
-          <button type="submit" className="btn btn-ink">get estimate →</button>
+          <button type="submit" className="btn btn-ink">enquire →</button>
         </form>
-        <p className="micro">free 45-min consultation · reply within 24h · no obligation</p>
+        <p className="micro">private 45-min consultation · we reply within 24 hours</p>
       </div>
     </section>
   );
@@ -474,9 +474,9 @@ function Works(){
       <div className="sec-head">
         <div>
           <div className="eyebrow">selected works · 2024–2026</div>
-          <h2 className="h2">a portfolio you can price, time, and verify.</h2>
+          <h2 className="h2">a portfolio measured in years, not adjectives.</h2>
         </div>
-        <p className="lede" style={{maxWidth:'40ch'}}>every case study lists the budget, the timeline, and the team. nothing is hidden behind "on request".</p>
+        <p className="lede" style={{maxWidth:'40ch'}}>each project documented in detail — typology, scale, completion year. private site visits available on request.</p>
       </div>
       <div className="works-grid">
         {WORKS.map((w,i)=>(
@@ -489,8 +489,8 @@ function Works(){
                 <div className="work-cta">view case study</div>
               </div>
               <div className="work-spec">
-                <div>budget<br/><b>{w.budget}</b></div>
-                <div style={{marginTop:10}}>timeline<br/><b>{w.time}</b></div>
+                <div>typology<br/><b>{w.typology}</b></div>
+                <div style={{marginTop:10}}>completed<br/><b>{w.year}</b></div>
               </div>
             </div>
           </a>
@@ -507,18 +507,18 @@ function Services({ onBook }){
       <div className="container reveal">
         <div className="sec-head">
           <div>
-            <div className="eyebrow">services · from price · duration</div>
-            <h2 className="h2">six things we do, end-to-end.</h2>
+            <div className="eyebrow">disciplines · six practices, one studio</div>
+            <h2 className="h2">six disciplines, end-to-end.</h2>
           </div>
-          <p className="lede" style={{maxWidth:'40ch'}}>design, permits, build, finishing — handled by one team. no general contractors, no sub-sub-contractors.</p>
+          <p className="lede" style={{maxWidth:'40ch'}}>design, permits, build, finishing — held by one team. no general contractors, no sub-sub-contractors.</p>
         </div>
         <div className="svc-list">
           {SERVICES.map((s,i)=>(
             <div key={i} className="svc">
               <div className="svc-name">{s.name}</div>
-              <div className="svc-price">from <b>{s.from}</b></div>
+              <div className="svc-note">{s.note}</div>
               <div className="svc-dur">{s.dur}</div>
-              <button className="btn btn-ghost btn-sm svc-cta" onClick={onBook}>get a quote →</button>
+              <button className="btn btn-ghost btn-sm svc-cta" onClick={onBook}>enquire →</button>
             </div>
           ))}
         </div>
@@ -535,7 +535,7 @@ function Process(){
           <div className="eyebrow">process · four steps</div>
           <h2 className="h2">from first call to handover keys.</h2>
         </div>
-        <p className="lede" style={{maxWidth:'40ch'}}>fixed timeline at every step. you always know what is happening, what is next, and what it costs.</p>
+        <p className="lede" style={{maxWidth:'40ch'}}>a fixed cadence at every step. you always know what is happening, what is next, and when.</p>
       </div>
       <div className="process-grid">
         {PROCESS.map((p,i)=>(
@@ -556,8 +556,8 @@ function Testimonials(){
     <section className="section container reveal">
       <div className="sec-head">
         <div>
-          <div className="eyebrow">testimonials · verified clients</div>
-          <h2 className="h2">words from owners, in their own words.</h2>
+          <div className="eyebrow">in their own words</div>
+          <h2 className="h2">a few owners, on what it was like.</h2>
         </div>
       </div>
       <div className="quotes">
@@ -608,12 +608,12 @@ function FinalCTA({ onBook }){
       <div className="container reveal">
         <div className="eyebrow">next step · free & without obligation</div>
         <h2>book a 45-minute consultation.</h2>
-        <p className="lede">on-site or on zoom. we discuss your property, goals, and timeline. you leave with a clear next-step plan — whether you work with us or not.</p>
+        <p className="lede">on-site or on zoom. a private conversation about your property, your ambition, and your timeline. you leave with a clear next-step plan — whether you commission us or not.</p>
         <div className="final-cta">
           <button className="btn btn-bone" onClick={onBook}>book consultation →</button>
-          <a href="https://wa.me/97140000000" className="btn" style={{boxShadow:'inset 0 0 0 1px rgba(255,255,255,.25)',color:'#fff'}}>whatsapp us</a>
+          <a href="https://wa.me/97140000000" className="btn" style={{boxShadow:'inset 0 0 0 1px rgba(255,255,255,.25)',color:'#fff'}}>whatsapp the studio</a>
         </div>
-        <p className="final-micro">reply within 24 hours · no sales pressure · no obligation</p>
+        <p className="final-micro">private · we reply within 24 hours</p>
       </div>
     </section>
   );
@@ -653,31 +653,26 @@ function Modal({ open, onClose }){
           {!done ? (
             <>
               <h3>book a 45-min consultation.</h3>
-              <p className="sub">free · no obligation · reply within 24h</p>
+              <p className="sub">private · we reply within 24 hours</p>
               <form onSubmit={submit}>
                 <div className="row2">
                   <div className="field"><label>full name</label><input required placeholder="your name"/></div>
                   <div className="field"><label>phone</label><input required placeholder="+971 …"/></div>
                 </div>
                 <div className="field"><label>email</label><input type="email" required placeholder="you@domain.com"/></div>
-                <div className="row2">
-                  <div className="field"><label>project type</label>
-                    <select required defaultValue=""><option value="" disabled>select…</option>
-                      <option>villa renovation</option><option>apartment renovation</option>
-                      <option>kitchen</option><option>bathroom & spa</option>
-                      <option>office fit-out</option><option>landscape & outdoor</option>
-                    </select>
-                  </div>
-                  <div className="field"><label>budget range</label>
-                    <select required defaultValue=""><option value="" disabled>select…</option>
-                      <option>aed 180k – 500k</option><option>aed 500k – 1.5m</option>
-                      <option>aed 1.5m – 3m</option><option>aed 3m+</option>
-                    </select>
-                  </div>
+                <div className="field"><label>project type</label>
+                  <select required defaultValue=""><option value="" disabled>select…</option>
+                    <option>villa renovation</option><option>apartment renovation</option>
+                    <option>kitchen</option><option>bathroom & spa</option>
+                    <option>office fit-out</option><option>landscape & outdoor</option>
+                  </select>
+                </div>
+                <div className="field"><label>tell us about your project</label>
+                  <input placeholder="property, ambition, timeline…"/>
                 </div>
                 <div className="modal-foot">
-                  <p className="micro">we reply within 24h · no sales pressure</p>
-                  <button type="submit" className="btn btn-ink">send request →</button>
+                  <p className="micro">we reply within 24 hours</p>
+                  <button type="submit" className="btn btn-ink">send enquiry →</button>
                 </div>
               </form>
             </>
