@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>our services — smart renovation dubai</title>
+<meta name="description" content="Turnkey interior services in Dubai: interior fit-out, villa & home renovation, kitchen, landscape, office and retail — design, permits and build under one studio." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#111110;
+    --bone:#ffffff;
+    --paper:#f4f2ed;
+    --muted:#8a8680;
+    --line:rgba(17,17,16,0.10);
+    --sans:'Inter',system-ui,-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --pad-x:40px;
+    --section:140px;
+    --max:1600px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bone);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  img{display:block;max-width:100%;height:auto}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--ink);color:var(--bone)}
+
+  .container{max-width:var(--max);margin:0 auto;padding:0 var(--pad-x)}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .display{font-weight:400;letter-spacing:-.03em;line-height:1.02}
+  .h1{font-size:clamp(40px,6.4vw,96px)}
+  .h2{font-size:clamp(36px,5.2vw,80px);font-weight:400;letter-spacing:-.025em;line-height:1.04;margin:0}
+  .lede{font-size:clamp(16px,1.4vw,20px);color:var(--muted);max-width:60ch;line-height:1.55}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;height:52px;padding:0 26px;border-radius:999px;font-size:15px;font-weight:500;letter-spacing:-.005em;transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease}
+  .btn-ink{background:var(--ink);color:var(--bone)}
+  .btn-ink:hover{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+  .btn-bone{background:var(--bone);color:var(--ink)}
+  .btn-bone:hover{background:transparent;color:var(--bone);box-shadow:inset 0 0 0 1px var(--bone)}
+  .btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+  .btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--ink)}
+  .btn-sm{height:42px;padding:0 18px;font-size:13.5px}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bone) 78%,transparent);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--line)}
+  .nav-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:74px;gap:24px}
+  .nav-left{display:flex;gap:34px;align-items:center;justify-self:start}
+  .nav-left a{font-size:14.5px;color:var(--muted);transition:color .2s}
+  .nav-left a:hover{color:var(--ink)}
+  .brand{font-size:15px;font-weight:500;letter-spacing:-.01em;display:inline-flex;align-items:center;gap:12px;justify-self:center;white-space:nowrap}
+  .brand-mark{width:38px;height:38px;flex:none;display:block}
+  .nav-right{display:flex;align-items:center;gap:14px;justify-self:end}
+  .nav-phone{font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .nav-book-short{display:none}
+  @media (max-width:560px){
+    .nav-book-full{display:none}
+    .nav-book-short{display:inline}
+    .nav-row{gap:10px}
+    .brand{gap:8px;font-size:14px}
+    .brand-mark{width:32px;height:32px}
+  }
+  @media (max-width:860px){
+    .nav-row{grid-template-columns:auto 1fr auto}
+    .nav-left,.nav-phone{display:none}
+  }
+
+  /* services hero */
+  .svc-hero{padding:72px 0 40px;text-align:center}
+  .svc-hero .eyebrow{margin-bottom:24px}
+  .svc-hero h1{margin:0 0 28px}
+  .svc-hero .lede{margin:0 auto}
+  .svc-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:36px}
+  .svc-chips a{font-family:var(--mono);font-size:12px;letter-spacing:.04em;border:1px solid var(--line);border-radius:999px;padding:9px 15px;color:var(--muted);transition:border-color .2s,color .2s}
+  .svc-chips a:hover{border-color:var(--ink);color:var(--ink)}
+
+  /* service block */
+  .svc-block{padding:96px 0;border-top:1px solid var(--line);scroll-margin-top:86px}
+  .svc-block.alt{background:var(--paper)}
+  .svc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+  .svc-media{aspect-ratio:4/3;overflow:hidden;background:var(--paper)}
+  .svc-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease-out}
+  .svc-block:hover .svc-media img{transform:scale(1.03)}
+  .svc-copy .eyebrow{margin-bottom:18px}
+  .svc-copy .svc-title{font-size:clamp(30px,3.6vw,52px);font-weight:400;letter-spacing:-.02em;line-height:1.05;margin:0 0 22px}
+  .svc-copy .lede{margin-bottom:32px}
+  .svc-block.alt .svc-media{order:-1}
+  .svc-detail{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:64px;padding-top:48px;border-top:1px solid var(--line)}
+  .svc-detail h3{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 12px}
+  .svc-ul{list-style:none;padding:0;margin:0}
+  .svc-ul li{padding:13px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.5;display:flex;gap:12px}
+  .svc-ul li:last-child{border-bottom:0}
+  .svc-ul li::before{content:"—";color:var(--muted);flex:none}
+  @media (max-width:860px){
+    :root{--pad-x:20px}
+    .svc-block{padding:64px 0}
+    .svc-grid{grid-template-columns:1fr;gap:28px}
+    .svc-block.alt .svc-media{order:0}
+    .svc-detail{grid-template-columns:1fr;gap:8px;margin-top:40px;padding-top:36px}
+  }
+
+  /* final cta */
+  .final{background:var(--ink);color:var(--bone);padding:140px 0}
+  .final .eyebrow{color:rgba(255,255,255,.55)}
+  .final h2{font-size:clamp(44px,6.4vw,96px);font-weight:400;letter-spacing:-.03em;line-height:1.02;margin:18px 0 32px;max-width:14ch}
+  .final .lede{color:rgba(255,255,255,.65);max-width:54ch;margin-bottom:44px}
+  .final-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .final-micro{margin-top:22px;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.04em}
+  @media (max-width:680px){.final{padding:104px 0}}
+
+  /* footer */
+  .foot{padding:42px 0;border-top:1px solid var(--line)}
+  .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+  .foot-row a{margin-left:22px}
+  .foot-row a:hover{color:var(--ink)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 1.1s cubic-bezier(.2,.8,.2,1),transform 1.1s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-row">
+    <nav class="nav-left"><a href="Smart%20Renovation%20Home.html">← home</a></nav>
+    <a href="Smart%20Renovation%20Home.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 120 120" role="img" aria-label="smart renovation" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 60,4 A 56,56 0 0,0 60,116 Z" fill="#1f7a3a"/>
+        <path d="M 60,4 A 56,56 0 0,1 60,116 Z" fill="#d2342c"/>
+        <circle cx="60" cy="60" r="48" fill="#ffffff"/>
+        <defs><path id="svc-arc" d="M 60,18 a 42,42 0 1,1 -0.001,0" fill="none"/></defs>
+        <text fill="#111110" font-family="Inter, sans-serif" font-size="7.6" font-weight="700" letter-spacing="1.6"><textPath href="#svc-arc" startOffset="0">SMART · RENOVATION · SMART · RENOVATION ·</textPath></text>
+        <g transform="translate(60,62)" fill="#111110"><path d="M -17,-3 L 0,-20 L 17,-3 L 17,16 L -17,16 Z"/><rect x="-4.5" y="3" width="9" height="13" fill="#ffffff"/></g>
+      </svg>smart renovation
+    </a>
+    <div class="nav-right">
+      <span class="nav-phone">+971 4 235 0599</span>
+      <a class="btn btn-ink btn-sm nav-book" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
+        <span class="nav-book-full">free consultation</span><span class="nav-book-short">enquire</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="svc-hero container reveal">
+  <div class="eyebrow">services · seven practices, one studio</div>
+  <h1 class="display h1">everything we do,<br/>end-to-end.</h1>
+  <p class="lede">design, permits, build and finishing — held by one team. full turnkey delivery across residential and commercial spaces in Dubai, on time and on budget.</p>
+  <nav class="svc-chips">
+    <a href="#interior-fit-out">interior fit-out</a>
+    <a href="#villa-renovation">villa renovation</a>
+    <a href="#home-renovation">home renovation</a>
+    <a href="#kitchen-renovation">kitchen renovation</a>
+    <a href="#landscape-design">landscape design</a>
+    <a href="#office-fit-out">office fit-out</a>
+    <a href="#retail-design">retail design</a>
+  </nav>
+</section>
+
+<!-- 1. interior fit-out -->
+<section id="interior-fit-out" class="svc-block reveal">
+  <div class="container">
+    <div class="svc-grid">
+      <div class="svc-copy">
+        <div class="eyebrow">service 01 · interior fit-out</div>
+        <h2 class="svc-title">designed for distinction, built for performance.</h2>
+        <p class="lede">We manage every detail of your fit-out through a single dedicated team — a turnkey approach that removes complexity and aligns aesthetics with function, sustainability and technical precision.</p>
+        <a class="btn btn-ink" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">discuss your project →</a>
+      </div>
+      <div class="svc-media"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400&q=80&auto=format&fit=crop" alt="interior fit-out" loading="lazy"/></div>
+    </div>
+    <div class="svc-detail">
+      <div>
+        <h3>what's included</h3>
+        <ul class="svc-ul">
+          <li>3D design &amp; visualization</li>
+          <li>Fit-out execution — structure to final finishes</li>
+          <li>Bespoke furniture &amp; joinery</li>
+          <li>MEP systems (mechanical, electrical, plumbing)</li>
+          <li>Permit approval &amp; regulatory compliance</li>
+          <li>Quality control &amp; post-handover support</li>
+        </ul>
+      </div>
+      <div>
+        <h3>why smart renovation</h3>
+        <ul class="svc-ul">
+          <li>One point of contact, total accountability</li>
+          <li>Design expertise with hands-on project management</li>
+          <li>Delivered on time, within budget, built to last</li>
+          <li>Navigates Dubai's approval processes efficiently</li>
+          <li>Transparent pricing and detailed timelines</li>
+          <li>Attentive aftercare even after handover</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. villa renovation -->
+<section id="villa-renovation" class="svc-block alt reveal">
+  <div class="container">
+    <div class="svc-grid">
+      <div class="svc-copy">
+        <div class="eyebrow">service 02 · high-end villa renovation</div>
+        <h2 class="svc-title">the finest villa renovation in dubai.</h2>
+        <p class="lede">All-inclusive renovation covering design, materials, construction and project management — transformations focused on function, quality and comfort, with every Dubai Municipality permit handled for you.</p>
+        <a class="btn btn-ink" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">discuss your project →</a>
+      </div>
+      <div class="svc-media"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&q=80&auto=format&fit=crop" alt="high-end villa renovation" loading="lazy"/></div>
+    </div>
+    <div class="svc-detail">
+      <div>
+        <h3>what's included</h3>
+        <ul class="svc-ul">
+          <li>Architectural redesign &amp; spatial layout</li>
+          <li>Interior design &amp; custom mood-boarding</li>
+          <li>Premium materials &amp; luxury finishes</li>
+          <li>Kitchen &amp; bathroom remodeling</li>
+          <li>Landscape design &amp; pool integration</li>
+          <li>Structural work, project &amp; permit management</li>
+        </ul>
+      </div>
+      <div>
+        <h3>why smart renovation</h3>
+        <ul class="svc-ul">
+          <li>Materials from exclusive international suppliers</li>
+          <li>Expert in Dubai regulations &amp; building codes</li>
+          <li>Customized timelines with no hidden fees</li>
+          <li>Dedicated team handling approvals throughout</li>
+          <li>Post-handover support &amp; maintenance guidance</li>
+          <li>Focus on long-term property value</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. home renovation -->
+<section id="home-renovation" class="svc-block reveal">
+  <div class="container">
+    <div class="svc-grid">
+      <div class="svc-copy">
+        <div class="eyebrow">service 03 · home renovation</div>
+        <h2 class="svc-title">renovation that fits seamlessly into your life.</h2>
+        <p class="lede">We reimagine underused spaces into refined, livable homes where comfort, elegance and practicality coexist — delivered on time, with clear communication and minimal hassle.</p>
+        <a class="btn btn-ink" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">discuss your project →</a>
+      </div>
+      <div class="svc-media"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=80&auto=format&fit=crop" alt="home renovation" loading="lazy"/></div>
+    </div>
+    <div class="svc-detail">
+      <div>
+        <h3>what's included</h3>
+        <ul class="svc-ul">
+          <li>Full-home renovation — villas &amp; apartments</li>
+          <li>Kitchen renovation with bespoke cabinetry</li>
+          <li>Bathroom design &amp; renovation</li>
+          <li>Living-room &amp; bedroom modernization</li>
+          <li>Villa extensions for added space</li>
+          <li>Interior fit-out, landscape &amp; garden design</li>
+        </ul>
+      </div>
+      <div>
+        <h3>why smart renovation</h3>
+        <ul class="svc-ul">
+          <li>40+ years of Italian design with local expertise</li>
+          <li>Handles developer approvals &amp; NOC documentation</li>
+          <li>Clear planning &amp; transparent communication</li>
+          <li>Improves daily living and property value</li>
+          <li>Free consultations &amp; detailed cost breakdowns</li>
+          <li>Post-project support &amp; follow-up</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. kitchen renovation -->
+<section id="kitchen-renovation" class="svc-block alt reveal">
+  <div class="container">
+    <div class="svc-grid">
+      <div class="svc-copy">
+        <div class="eyebrow">service 04 · kitchen renovation</div>
+        <h2 class="svc-title">a kitchen that enhances cooking and connection.</h2>
+        <p class="lede">A well-executed kitchen renovation enhances both function and aesthetics. We manage every stage — from planning through furnishing and styling — to create a space tailored to your daily needs.</p>
+        <a class="btn btn-ink" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">discuss your project →</a>
+      </div>
+      <div class="svc-media"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=80&auto=format&fit=crop" alt="kitchen renovation" loading="lazy"/></div>
+    </div>
+    <div class="svc-detail">
+      <div>
+        <h3>what's included</h3>
+        <ul class="svc-ul">
+          <li>Custom cabinetry &amp; cooking systems</li>
+          <li>Durable worktops (quartz, granite, nano-white)</li>
+          <li>Smart storage — pull-outs, deep drawers, racks</li>
+          <li>Premium appliance sourcing &amp; integration</li>
+          <li>Energy-efficient lighting &amp; fixtures</li>
+          <li>DDA / Dubai Municipality approvals</li>
+        </ul>
+      </div>
+      <div>
+        <h3>why smart renovation</h3>
+        <ul class="svc-ul">
+          <li>Designed around your daily habits &amp; family</li>
+          <li>Premium materials from trusted brands</li>
+          <li>All approvals and documentation handled</li>
+          <li>Modular or fully custom-made options</li>
+          <li>Layouts for compact or open-plan living</li>
+          <li>Post-renovation support &amp; warranty</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. landscape design -->
+<section id="landscape-design" class="svc-block reveal">
+  <div class="container">
+    <div class="svc-grid">
+      <div class="svc-copy">
+        <div class="eyebrow">service 05 · bespoke landscape design</div>
+        <h2 class="svc-title">outdoor spaces built to thrive in dubai.</h2>
+        <p class="lede">Custom garden landscapes designed for Dubai's climate — lush, resilient outdoor spaces year-round, with expert planning, smart irrigation and durable materials for low-maintenance beauty.</p>
+        <a class="btn btn-ink" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">discuss your project →</a>
+      </div>
+      <div class="svc-media"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1400&q=80&auto=format&fit=crop" alt="bespoke landscape design" loading="lazy"/></div>
+    </div>
+    <div class="svc-detail">
+      <div>
+        <h3>what's included</h3>
+        <ul class="svc-ul">
+          <li>Conceptual garden &amp; pool design</li>
+          <li>Custom pools &amp; outdoor living zones</li>
+          <li>Outdoor kitchens, grills &amp; shaded seating</li>
+          <li>Climate-resilient planting &amp; soft landscaping</li>
+          <li>Paving, decking &amp; hardscape</li>
+          <li>Automated irrigation, water features &amp; lighting</li>
+        </ul>
+      </div>
+      <div>
+        <h3>why smart renovation</h3>
+        <ul class="svc-ul">
+          <li>10+ years in premium residential &amp; commercial outdoors</li>
+          <li>Balances softscape with structured design</li>
+          <li>Manages municipal permits &amp; approvals</li>
+          <li>Native, drought-tolerant planting</li>
+          <li>Ongoing maintenance packages</li>
+          <li>Specialists in limited or irregular plots</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. office fit-out -->
+<section id="office-fit-out" class="svc-block alt reveal">
+  <div class="container">
+    <div class="svc-grid">
+      <div class="svc-copy">
+        <div class="eyebrow">service 06 · office design &amp; fit-out</div>
+        <h2 class="svc-title">setting the standard in office fit-out.</h2>
+        <p class="lede">We transform workplaces through complete interior design and fit-out — ergonomic, brand-aligned spaces tailored to your workflow, culture and operational needs.</p>
+        <a class="btn btn-ink" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">discuss your project →</a>
+      </div>
+      <div class="svc-media"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80&auto=format&fit=crop" alt="office design and fit-out" loading="lazy"/></div>
+    </div>
+    <div class="svc-detail">
+      <div>
+        <h3>what's included</h3>
+        <ul class="svc-ul">
+          <li>Interior design &amp; layout planning</li>
+          <li>Custom joinery &amp; bespoke furnishings</li>
+          <li>MEP works, flooring, ceilings &amp; lighting</li>
+          <li>Branding elements &amp; finishes</li>
+          <li>3D design visualization</li>
+          <li>Authority approvals &amp; project management</li>
+        </ul>
+      </div>
+      <div>
+        <h3>why smart renovation</h3>
+        <ul class="svc-ul">
+          <li>Local expertise in Dubai codes &amp; compliance</li>
+          <li>Designs reflecting your culture &amp; brand</li>
+          <li>Phased execution minimizing downtime</li>
+          <li>Collaborative 3D visualization before build</li>
+          <li>End-to-end management to completion</li>
+          <li>Premium materials &amp; post-handover support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. retail design -->
+<section id="retail-design" class="svc-block reveal">
+  <div class="container">
+    <div class="svc-grid">
+      <div class="svc-copy">
+        <div class="eyebrow">service 07 · retail interior design</div>
+        <h2 class="svc-title">retail spaces that become brand experiences.</h2>
+        <p class="lede">We transform commercial spaces into immersive brand experiences — full-suite retail design and fit-out that's scalable, customizable and aligned with your business goals, from flagship stores to refreshes.</p>
+        <a class="btn btn-ink" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">discuss your project →</a>
+      </div>
+      <div class="svc-media"><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1400&q=80&auto=format&fit=crop" alt="retail interior design" loading="lazy"/></div>
+    </div>
+    <div class="svc-detail">
+      <div>
+        <h3>what's included</h3>
+        <ul class="svc-ul">
+          <li>Space planning &amp; layout optimization</li>
+          <li>Interior design &amp; 3D conceptualization</li>
+          <li>Lighting design &amp; installation</li>
+          <li>Flooring, ceiling &amp; wall treatments</li>
+          <li>Project management &amp; regulatory approvals</li>
+        </ul>
+      </div>
+      <div>
+        <h3>why smart renovation</h3>
+        <ul class="svc-ul">
+          <li>Guides customer flow &amp; maximizes display impact</li>
+          <li>Realistic 3D renderings before construction</li>
+          <li>Design integrity, efficiency &amp; coordination</li>
+          <li>Manages timelines, resources &amp; compliance</li>
+          <li>Differentiates you in competitive markets</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- final cta -->
+<section class="final">
+  <div class="container reveal">
+    <div class="eyebrow">next step · free &amp; without obligation</div>
+    <h2>book a free consultation.</h2>
+    <p class="lede">tell us about your space, your ambition and your timeline. we assess, plan, permit and deliver — turnkey, on time and on budget.</p>
+    <div class="final-cta">
+      <a href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer" class="btn btn-bone">free consultation →</a>
+      <a href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer" class="btn" style="box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);color:#fff">whatsapp the studio</a>
+    </div>
+    <p class="final-micro">+971 4 235 0599 · info@smartrenovation.ae</p>
+  </div>
+</section>
+
+<!-- footer -->
+<footer class="foot">
+  <div class="container foot-row">
+    <div>© 2026 smart renovation · sheikh zayed road, dubai, uae · info@smartrenovation.ae</div>
+    <div>
+      <a href="https://www.instagram.com/smartrenovationdubai" target="_blank" rel="noopener noreferrer">instagram</a>
+      <a href="https://www.linkedin.com/company/smart-renovation" target="_blank" rel="noopener noreferrer">linkedin</a>
+      <a href="https://www.facebook.com/smartrenovationdubai" target="_blank" rel="noopener noreferrer">facebook</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // reliable jump to the linked service (e.g. arriving from services.html#villa-renovation)
+  function jumpToHash(){
+    if(!location.hash) return;
+    var el = document.getElementById(location.hash.slice(1));
+    if(el) el.scrollIntoView();
+  }
+  if(document.readyState === 'complete') jumpToHash();
+  else window.addEventListener('load', jumpToHash);
+  window.addEventListener('hashchange', jumpToHash);
+})();
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in')}); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0, rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){ io.observe(e); });
+  setTimeout(function(){ els.forEach(function(e){ e.classList.add('in'); }); }, 1600);
+})();
+</script>
+</body>
+</html>

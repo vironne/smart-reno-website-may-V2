@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>smart renovation dubai — design-build studio</title>
-<meta name="description" content="Dubai renovations, delivered on time — every time. Design-build studio for villas, apartments and offices." />
+<title>smart renovation — interior design contractors in dubai</title>
+<meta name="description" content="Award-winning fit-out & renovation experts in Dubai since 1970. Turnkey interior design, villa renovation and commercial fit-out — design, permits and build under one studio." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -199,7 +199,7 @@
   @media (max-width:860px){.svc{grid-template-columns:1fr;gap:8px;padding:28px 0}.svc-cta{justify-self:start;margin-top:8px}}
 
   /* process */
-  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+  .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
   .step{padding:48px 36px 56px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
   .step:last-child{border-right:0}
   .step-num{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.06em;margin-bottom:36px}
@@ -309,47 +309,46 @@
 const { useState, useEffect, useRef } = React;
 
 /* ---------- whatsapp ---------- */
-// TODO: replace with the studio's real WhatsApp number (international format, digits only)
-const WA_NUMBER = "971501234567";   // placeholder — fake UAE mobile
+const WA_NUMBER = "971567990448";   // Smart Renovation WhatsApp (+971 56 799 0448)
 const WA_URL = `https://wa.me/${WA_NUMBER}`;
 const openWhatsApp = ()=> window.open(WA_URL, "_blank", "noopener,noreferrer");
 
 /* ---------- data ---------- */
 const WORKS = [
-  { title:"emirates hills villa", loc:"Emirates Hills · 8,400 sqft", img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80&auto=format&fit=crop", typology:"Private residence", year:"2025" },
-  { title:"downtown sky residence", loc:"Burj Khalifa District · 3,200 sqft", img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format&fit=crop", typology:"Apartment", year:"2025" },
-  { title:"al barari garden home", loc:"Al Barari · 5,600 sqft", img:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600&q=80&auto=format&fit=crop", typology:"Family villa", year:"2024" },
-  { title:"difc creative office", loc:"DIFC Gate Avenue · 4,100 sqft", img:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80&auto=format&fit=crop", typology:"Workplace", year:"2024" },
+  { title:"high-end villa renovation", loc:"Emirates Hills · Dubai", img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80&auto=format&fit=crop", typology:"Private villa", year:"2024" },
+  { title:"office interior fit-out", loc:"DIFC · Dubai", img:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80&auto=format&fit=crop", typology:"Workplace", year:"2024" },
+  { title:"bespoke kitchen renovation", loc:"Downtown · Dubai", img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format&fit=crop", typology:"Residential", year:"2025" },
+  { title:"bespoke landscape design", loc:"Al Barari · Dubai", img:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600&q=80&auto=format&fit=crop", typology:"Garden & terrace", year:"2023" },
 ];
 
 const SERVICES = [
-  { name:"villa renovation",      note:"Full-property design, build & handover",    dur:"6–9 months" },
-  { name:"apartment renovation",  note:"Full-residence transformation",             dur:"3–5 months" },
-  { name:"kitchen design",        note:"Bespoke kitchen architecture",              dur:"8–12 weeks" },
-  { name:"bathroom & spa",        note:"Wet-rooms, hammams & wellness suites",      dur:"6–10 weeks" },
-  { name:"office fit-out",        note:"Workplace & commercial interiors",          dur:"4–6 months" },
-  { name:"landscape & outdoor",   note:"Gardens, terraces, pools & majlis",         dur:"3–5 months" },
+  { name:"interior fit-out",          note:"Turnkey fit-out for residential & commercial spaces", dur:"3–6 months",  slug:"interior-fit-out" },
+  { name:"high-end villa renovation", note:"Full-property design, build & handover",             dur:"6–12 months", slug:"villa-renovation" },
+  { name:"home renovation",           note:"Complete apartment & home transformations",          dur:"3–6 months",  slug:"home-renovation" },
+  { name:"kitchen renovation",        note:"Bespoke kitchen design & joinery",                   dur:"8–12 weeks",  slug:"kitchen-renovation" },
+  { name:"bespoke landscape design",  note:"Gardens, terraces, pools & outdoor living",          dur:"3–5 months",  slug:"landscape-design" },
+  { name:"office design & fit-out",   note:"Workplace interiors & commercial fit-out",           dur:"4–6 months",  slug:"office-fit-out" },
+  { name:"retail interior design",    note:"Showrooms, stores & hospitality interiors",          dur:"2–4 months",  slug:"retail-design" },
 ];
 
 const PROCESS = [
-  { name:"discovery", dur:"45 min", body:"A private conversation about your property, ambition, and timeline." },
-  { name:"written proposal", dur:"7 days", body:"Full scope, material palette, timeline and a fixed proposal — delivered in writing." },
-  { name:"design & approvals", dur:"6–12 weeks", body:"Concepts, visualisations, municipality submissions — held by the studio." },
-  { name:"build & handover", dur:"3–9 months", body:"Weekly progress updates, on-site QA, on-time keys. Guaranteed." },
+  { name:"discovery", dur:"stage 01", body:"Property assessment, on-site measurements and a private consultation about your space, ambition and timeline." },
+  { name:"planning", dur:"stage 02", body:"Proposal, technical drawings and permit applications — every detail agreed and approved before we build." },
+  { name:"delivery", dur:"stage 03", body:"Full project management from demolition through finishes to a clean, on-time and on-budget handover." },
 ];
 
 const QUOTES = [
-  { text:"They proposed in six days, started in three weeks, and handed over the villa two days early. Unheard of in Dubai.", by:"Layla H.", meta:"Emirates Hills · private residence" },
-  { text:"One team held design, permits and build. We never had to chase a contractor or a consultant once.", by:"Marc R.", meta:"DIFC · workplace" },
-  { text:"The proposal held to the line. Weekly site walks, transparent reporting, no surprises at handover.", by:"Aisha & Omar K.", meta:"Downtown · apartment" },
+  { text:"From getting approvals to managing the smallest finishes, they were reliable and responsive throughout.", by:"David L.", meta:"verified client · Dubai" },
+  { text:"Professional, friendly and have excellent ideas. Always happy to oblige clients and take into account client needs.", by:"A. G.", meta:"verified client · Dubai" },
+  { text:"Always responsive and caring for my needs. I would recommend their service to anyone who needs to renovate.", by:"E. R.", meta:"verified client · Dubai" },
 ];
 
 const FAQS = [
-  { q:"How long does a typical renovation take?", a:"Apartments: 3–5 months. Villas: 6–9 months. Commercial: 4–6 months. We lock the timeline in the contract and hit 98% of dates." },
-  { q:"How does pricing work? Will there be surprises?", a:"After a private site visit we issue a written, fixed proposal within seven days. No hidden extras, no change-order games — the proposal you sign is the proposal we deliver against." },
-  { q:"Do you handle permits, RERA and DCD approvals?", a:"Yes — we are RERA, DED and Dubai Civil Defence licensed. Permits, NOCs and municipality submissions are held by the studio, end-to-end." },
-  { q:"Can I stay in my home during the renovation?", a:"Usually not for villas and full-apartment projects. Where it is feasible, we sequence partial works so you can remain in the property — confirmed during the design phase." },
-  { q:"What kind of projects do you take on?", a:"Projects where design rigour matters. From a single kitchen or bathroom to a full villa or office. We do not take on purely decorative work." },
+  { q:"What exactly do interior design contractors do for my property?", a:"As interior design contractors in Dubai, we manage the full renovation journey: we plan the layout, select finishes and furniture, coordinate trades (electrical, plumbing, joinery), monitor progress on site, and deliver a finished space ready for use." },
+  { q:"What does a “fit-out company” specialise in?", a:"A fit-out company takes an empty shell or existing space and prepares it for occupancy: installing walls, ceilings, furniture, lighting, finishes, and often MEP (mechanical, electrical, plumbing) systems to ensure the space functions as intended." },
+  { q:"What’s the difference between a renovation company and a regular contractor?", a:"A renovation company specialises in upgrading or changing existing spaces (homes, offices, villas) rather than building brand-new structures. They handle both design and construction phases, tailored to transforming your current space." },
+  { q:"Can I live in the home while renovation is underway?", a:"It depends on the scope. If major structural works or MEP changes are involved, it’s safer to vacate or restrict access. For smaller updates (paint, flooring, furniture), you might stay but expect some disruption and careful coordination with the renovation company." },
+  { q:"What extra considerations apply to villa renovation vs apartment?", a:"For villa renovation, you’ll face larger spaces, outdoor areas (terraces, gardens), potentially structural changes, and more complex services (pool, landscaping, lighting). You’ll want a contractor with villa-specific experience, strong project management and the right trade network." },
 ];
 
 /* ---------- reveal hook ---------- */
@@ -422,10 +421,10 @@ function Nav({ onBook }){
         ><span/></button>
         <a href="#" className="brand" onClick={close}><Logo id="nav-logo"/>smart renovation</a>
         <div className="nav-right">
-          <span className="nav-phone">+971 4 000 0000</span>
+          <span className="nav-phone">+971 4 235 0599</span>
           <button className="btn btn-ink btn-sm nav-book" onClick={onBook}>
-            <span className="nav-book-full">book consultation</span>
-            <span className="nav-book-short">book</span>
+            <span className="nav-book-full">free consultation</span>
+            <span className="nav-book-short">enquire</span>
           </button>
         </div>
       </div>
@@ -442,8 +441,8 @@ function Nav({ onBook }){
           <a href="#faq" onClick={(e)=>goTo(e,'faq')}>faq</a>
         </nav>
         <div className="mm-foot">
-          <span className="mm-phone">+971 4 000 0000</span>
-          <button className="btn btn-ink" onClick={()=>{ close(); onBook(); }}>book consultation →</button>
+          <span className="mm-phone">+971 4 235 0599</span>
+          <button className="btn btn-ink" onClick={()=>{ close(); onBook(); }}>free consultation →</button>
         </div>
       </div>
     </>
@@ -454,23 +453,23 @@ function Hero({ onBook }){
   return (
     <section className="hero container reveal">
       <div className="hero-inner">
-        <span className="badge"><span className="pulse"/>accepting 4 residential commissions · q3 2026</span>
+        <span className="badge"><span className="pulse"/>award-winning fit-out & renovation · since 1970</span>
         <h1 className="display h1">italian craft.<br/>dubai living.</h1>
-        <p className="lede">design-build studio for villas, apartments and offices. one team, one written proposal, one fixed date — from first sketch to final handover.</p>
-        <a className="btn btn-ink hero-cta" href={WA_URL} target="_blank" rel="noopener noreferrer">book on whatsapp →</a>
-        <p className="micro">private 45-min consultation · we reply within 24 hours</p>
+        <p className="lede">top-tier interior design contractors in dubai. turnkey fit-out and renovation that strikes the balance between elegance and efficiency — design, permits and build held by one studio.</p>
+        <a className="btn btn-ink hero-cta" href={WA_URL} target="_blank" rel="noopener noreferrer">free consultation →</a>
+        <p className="micro">turnkey · delivered on time and on budget</p>
       </div>
     </section>
   );
 }
 
 const HERO_SLIDES = [
-  { img:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=2400&q=85&auto=format&fit=crop", title:"palm jumeirah villa", meta:"residential · 8,400 sqft · handover q1 2026", tag:"villa renovation" },
-  { img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=2400&q=85&auto=format&fit=crop", title:"emirates hills residence", meta:"private home · 6,200 sqft · in build", tag:"design-build" },
-  { img:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=2400&q=85&auto=format&fit=crop", title:"downtown sky kitchen", meta:"apartment · burj district · q4 2025", tag:"kitchen design" },
-  { img:"https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=2400&q=85&auto=format&fit=crop", title:"jumeirah spa retreat", meta:"wellness suite · 1,800 sqft", tag:"bathroom & spa" },
-  { img:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=2400&q=85&auto=format&fit=crop", title:"difc creative studio", meta:"office fit-out · 4,100 sqft · delivered", tag:"commercial" },
-  { img:"https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=2400&q=85&auto=format&fit=crop", title:"al barari garden home", meta:"villa · 5,600 sqft · in design", tag:"villa renovation" },
+  { img:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=2400&q=85&auto=format&fit=crop", title:"high-end villa renovation", meta:"private villa · emirates hills, dubai", tag:"villa renovation" },
+  { img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=2400&q=85&auto=format&fit=crop", title:"turnkey interior fit-out", meta:"residential · full turnkey delivery", tag:"interior fit-out" },
+  { img:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=2400&q=85&auto=format&fit=crop", title:"bespoke kitchen renovation", meta:"downtown, dubai · joinery & finishes", tag:"kitchen renovation" },
+  { img:"https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=2400&q=85&auto=format&fit=crop", title:"bespoke landscape design", meta:"terrace, garden & pool · al barari", tag:"landscape design" },
+  { img:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=2400&q=85&auto=format&fit=crop", title:"office interior fit-out", meta:"workplace · difc, dubai", tag:"office fit-out" },
+  { img:"https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=2400&q=85&auto=format&fit=crop", title:"retail interior design", meta:"showroom & store fit-out", tag:"retail design" },
 ];
 
 function HeroCarousel(){
@@ -524,12 +523,12 @@ function TrustBar(){
       <div className="container trust-row">
         <div className="press">
           <span>featured in</span>
-          <span style={{color:'var(--ink)',fontWeight:500}}>architectural digest middle east</span>
-          <span style={{color:'var(--ink)',fontWeight:500}}>identity</span>
-          <span style={{color:'var(--ink)',fontWeight:500}}>commercial interior design</span>
-          <span style={{color:'var(--ink)',fontWeight:500}}>gulf news</span>
+          <span style={{color:'var(--ink)',fontWeight:500}}>harper’s bazaar</span>
+          <span style={{color:'var(--ink)',fontWeight:500}}>luxhabitat</span>
+          <span style={{color:'var(--ink)',fontWeight:500}}>design middle east</span>
+          <span style={{color:'var(--ink)',fontWeight:500}}>love that design</span>
         </div>
-        <div className="licenses">rera · ded · dubai civil defence licensed</div>
+        <div className="licenses">6× award-winning · 2022–2025</div>
       </div>
     </section>
   );
@@ -537,10 +536,10 @@ function TrustBar(){
 
 function Stats(){
   const items = [
-    { n:"140+", l:"projects delivered across dubai" },
-    { n:"12 yrs", l:"operating in the emirates" },
-    { n:"98%", l:"on-time handover rate" },
-    { n:"4.9/5", l:"average client review · 84 reviews" },
+    { n:"1970", l:"crafting interiors — italian heritage, dubai roots" },
+    { n:"7", l:"in-house disciplines, one studio" },
+    { n:"6", l:"industry awards won · 2022–2025" },
+    { n:"100%", l:"turnkey — design, permits & build under one roof" },
   ];
   return (
     <section className="container reveal" style={{padding:'0 var(--pad-x)'}}>
@@ -561,10 +560,10 @@ function Works(){
     <section id="works" className="section container reveal">
       <div className="sec-head">
         <div>
-          <div className="eyebrow">selected works · 2024–2026</div>
-          <h2 className="h2">a portfolio measured in years, not adjectives.</h2>
+          <div className="eyebrow">selected work · residential & commercial</div>
+          <h2 className="h2">interiors built to last, across dubai.</h2>
         </div>
-        <p className="lede" style={{maxWidth:'40ch'}}>each project documented in detail — typology, scale, completion year. private site visits available on request.</p>
+        <p className="lede" style={{maxWidth:'40ch'}}>villas, homes, offices and retail — full turnkey delivery from design to handover. private site visits available on request.</p>
       </div>
       <div className="works-grid">
         {WORKS.map((w,i)=>(
@@ -584,7 +583,7 @@ function Works(){
           </a>
         ))}
       </div>
-      <div className="see-all"><a href="#" className="btn btn-ghost">see all 27 projects →</a></div>
+      <div className="see-all"><a href="#" className="btn btn-ghost">view our portfolio →</a></div>
     </section>
   );
 }
@@ -595,10 +594,10 @@ function Services({ onBook }){
       <div className="container reveal">
         <div className="sec-head">
           <div>
-            <div className="eyebrow">disciplines · six practices, one studio</div>
-            <h2 className="h2">six disciplines, end-to-end.</h2>
+            <div className="eyebrow">services · seven practices, one studio</div>
+            <h2 className="h2">seven disciplines, end-to-end.</h2>
           </div>
-          <p className="lede" style={{maxWidth:'40ch'}}>design, permits, build, finishing — held by one team. no general contractors, no sub-sub-contractors.</p>
+          <p className="lede" style={{maxWidth:'40ch'}}>design, permits, build and finishing — held by one team. full turnkey delivery, on time and on budget.</p>
         </div>
         <div className="svc-list">
           {SERVICES.map((s,i)=>(
@@ -606,7 +605,7 @@ function Services({ onBook }){
               <div className="svc-name">{s.name}</div>
               <div className="svc-note">{s.note}</div>
               <div className="svc-dur">{s.dur}</div>
-              <button className="btn btn-ghost btn-sm svc-cta" onClick={onBook}>enquire →</button>
+              <a className="btn btn-ghost btn-sm svc-cta" href={"services.html#"+s.slug}>enquire →</a>
             </div>
           ))}
         </div>
@@ -620,15 +619,15 @@ function Process(){
     <section id="process" className="section container reveal">
       <div className="sec-head">
         <div>
-          <div className="eyebrow">process · four steps</div>
-          <h2 className="h2">from first call to handover keys.</h2>
+          <div className="eyebrow">how we work · three stages</div>
+          <h2 className="h2">from first visit to handover keys.</h2>
         </div>
-        <p className="lede" style={{maxWidth:'40ch'}}>a fixed cadence at every step. you always know what is happening, what is next, and when.</p>
+        <p className="lede" style={{maxWidth:'40ch'}}>discovery, planning, delivery. you always know what is happening, what is next, and when.</p>
       </div>
       <div className="process-grid">
         {PROCESS.map((p,i)=>(
           <div key={i} className="step">
-            <div className="step-num">0{i+1} / 04</div>
+            <div className="step-num">0{i+1} / 03</div>
             <div className="step-name">{p.name}</div>
             <div className="step-dur">{p.dur}</div>
             <p className="step-body">{p.body}</p>
@@ -645,7 +644,7 @@ function Testimonials(){
       <div className="sec-head">
         <div>
           <div className="eyebrow">in their own words</div>
-          <h2 className="h2">a few owners, on what it was like.</h2>
+          <h2 className="h2">a few clients, on working with us.</h2>
         </div>
       </div>
       <div className="quotes">
@@ -658,9 +657,9 @@ function Testimonials(){
       </div>
       <div className="google">
         <div className="google-rating">
-          <b>4.9</b><span>average · 84 google reviews · verified</span>
+          <b>6×</b><span>award-winning · architecture leaders &amp; design middle east · 2022–2025</span>
         </div>
-        <a href="#" className="btn btn-ghost btn-sm">read all reviews →</a>
+        <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm">talk to the studio →</a>
       </div>
     </section>
   );
@@ -695,13 +694,13 @@ function FinalCTA({ onBook }){
     <section className="final">
       <div className="container reveal">
         <div className="eyebrow">next step · free & without obligation</div>
-        <h2>book a 45-minute consultation.</h2>
-        <p className="lede">on-site or on zoom. a private conversation about your property, your ambition, and your timeline. you leave with a clear next-step plan — whether you commission us or not.</p>
+        <h2>book a free consultation.</h2>
+        <p className="lede">a private conversation about your property, your ambition and your timeline. we assess the space, then plan, permit and deliver your renovation turnkey — on time and on budget.</p>
         <div className="final-cta">
-          <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn btn-bone">book consultation →</a>
+          <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn btn-bone">free consultation →</a>
           <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn" style={{boxShadow:'inset 0 0 0 1px rgba(255,255,255,.25)',color:'#fff'}}>whatsapp the studio</a>
         </div>
-        <p className="final-micro">private · we reply within 24 hours</p>
+        <p className="final-micro">+971 4 235 0599 · info@smartrenovation.ae</p>
       </div>
     </section>
   );
@@ -711,9 +710,11 @@ function Footer(){
   return (
     <footer className="foot">
       <div className="container foot-row">
-        <div>© 2026 smart renovation dubai · rera 12345 · ded 67890 · dcd licensed</div>
+        <div>© 2026 smart renovation · sheikh zayed road, dubai, uae · info@smartrenovation.ae</div>
         <div>
-          <a href="#">instagram</a><a href="#">linkedin</a><a href="#">privacy</a>
+          <a href="https://www.instagram.com/smartrenovationdubai" target="_blank" rel="noopener noreferrer">instagram</a>
+          <a href="https://www.linkedin.com/company/smart-renovation" target="_blank" rel="noopener noreferrer">linkedin</a>
+          <a href="https://www.facebook.com/smartrenovationdubai" target="_blank" rel="noopener noreferrer">facebook</a>
         </div>
       </div>
     </footer>
@@ -723,7 +724,7 @@ function Footer(){
 function StickyCTA({ onBook, show }){
   return (
     <div className={"sticky"+(show?" show":"")}>
-      <button className="btn btn-ink" onClick={onBook}>book consultation →</button>
+      <button className="btn btn-ink" onClick={onBook}>free consultation →</button>
     </div>
   );
 }
