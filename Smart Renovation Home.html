@@ -40,7 +40,8 @@
   ::selection{background:var(--ink);color:var(--bone)}
 
   .container{max-width:var(--max);margin:0 auto;padding:0 var(--pad-x)}
-  .section{padding:var(--section) 0}
+  #works,#services,#process,#faq{scroll-margin-top:90px}
+  .section{padding-top:var(--section);padding-bottom:var(--section)}
   .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
   .display{font-weight:400;letter-spacing:-.03em;line-height:1.02}
   .h1{font-size:clamp(44px,7.4vw,116px)}
@@ -71,13 +72,42 @@
   .footer-mark{width:30px;height:30px;flex:none;vertical-align:middle;margin-right:10px}
   .nav-right{display:flex;align-items:center;gap:14px;justify-self:end}
   .nav-phone{font-family:var(--mono);font-size:13px;color:var(--muted)}
+  .nav-book-short{display:none}
+  @media (max-width:560px){
+    .nav-book-full{display:none}
+    .nav-book-short{display:inline}
+    .nav-row{gap:10px}
+    .brand{gap:8px;font-size:14px}
+    .brand-mark{width:32px;height:32px}
+  }
+
+  /* mobile nav */
+  .nav-burger{display:none;width:42px;height:42px;align-items:center;justify-content:center;justify-self:start;margin-left:-9px}
+  .nav-burger span,.nav-burger span::before,.nav-burger span::after{content:"";position:absolute;width:20px;height:2px;background:var(--ink);transition:transform .3s ease,opacity .2s ease}
+  .nav-burger span{position:relative;display:block}
+  .nav-burger span::before{top:-6px}
+  .nav-burger span::after{top:6px}
+  .nav-burger.open span{background:transparent}
+  .nav-burger.open span::before{transform:translateY(6px) rotate(45deg)}
+  .nav-burger.open span::after{transform:translateY(-6px) rotate(-45deg)}
+
+  .mobile-menu{position:fixed;inset:0;z-index:70;background:var(--bone);display:flex;flex-direction:column;padding:18px var(--pad-x) calc(28px + env(safe-area-inset-bottom));transform:translateY(-100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);visibility:hidden}
+  .mobile-menu.open{transform:translateY(0);visibility:visible}
+  .mm-top{display:flex;justify-content:space-between;align-items:center;height:46px;margin-bottom:20px}
+  .mm-links{display:flex;flex-direction:column}
+  .mm-links a{font-size:clamp(30px,9vw,44px);font-weight:400;letter-spacing:-.02em;padding:18px 0;border-bottom:1px solid var(--line)}
+  .mm-foot{margin-top:auto;display:flex;flex-direction:column;gap:14px;padding-top:28px}
+  .mm-phone{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.04em}
+
+  @media (min-width:861px){.nav-burger,.mobile-menu{display:none!important}}
   @media (max-width:860px){
     .nav-row{grid-template-columns:auto 1fr auto}
     .nav-left,.nav-phone{display:none}
+    .nav-burger{display:flex}
   }
 
   /* hero */
-  .hero{padding:80px 0 80px;text-align:center}
+  .hero{padding-top:80px;padding-bottom:80px;text-align:center}
   .hero-carousel-wrap{padding:32px var(--pad-x) 0}
   .hero-inner{max-width:980px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
   .badge{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink)}
@@ -86,6 +116,7 @@
   @keyframes pulse{0%{transform:scale(.6);opacity:.5}100%{transform:scale(1.6);opacity:0}}
   .hero h1{margin:28px 0 28px}
   .hero .lede{margin:0 auto 40px}
+  .hero-cta{margin:0 auto}
   .lead-form{display:flex;align-items:center;gap:10px;width:100%;max-width:520px;border:1px solid var(--line);border-radius:999px;padding:6px 6px 6px 22px;background:var(--bone);transition:border-color .2s;margin:0 auto}
   .lead-form:focus-within{border-color:var(--ink)}
   .lead-form input{flex:1;border:0;background:transparent;outline:none;height:44px;font-size:16px;color:var(--ink)}
@@ -115,8 +146,10 @@
   .car-progress-bar{height:100%;background:#fff;width:0;transition:width 5.5s linear}
   .car-progress-bar.run{width:100%}
   @media (max-width:680px){
-    .car-meta{left:18px;right:18px;bottom:50px;flex-direction:column;align-items:flex-start;gap:16px}
+    .carousel{aspect-ratio:4/5}
+    .car-meta{left:18px;right:18px;bottom:52px;flex-direction:column;align-items:flex-start;gap:14px}
     .car-nav{align-self:flex-end}
+    .car-dot{height:4px;width:24px}
   }
 
   /* trust bar */
@@ -133,6 +166,7 @@
   .stat-num{font-size:clamp(40px,4.6vw,68px);font-weight:300;letter-spacing:-.03em;line-height:1;margin-bottom:14px}
   .stat-label{font-size:14px;color:var(--muted);max-width:18ch}
   @media (max-width:880px){.stats{grid-template-columns:repeat(2,1fr)}.stat{border-right:0;border-bottom:1px solid var(--line)}.stat:nth-child(2n){border-right:0}}
+  @media (max-width:480px){.stat{padding:40px 18px}}
 
   /* section header */
   .sec-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:64px;flex-wrap:wrap}
@@ -195,7 +229,7 @@
   .faq-q .plus{font-family:var(--mono);font-size:18px;color:var(--muted);transition:transform .3s ease}
   .faq-item.open .faq-q .plus{transform:rotate(45deg);color:var(--ink)}
   .faq-a{max-height:0;overflow:hidden;transition:max-height .45s ease,padding .35s ease;color:var(--muted);font-size:16px;line-height:1.55;max-width:62ch}
-  .faq-item.open .faq-a{max-height:280px;padding:0 0 36px}
+  .faq-item.open .faq-a{max-height:520px;padding:0 0 36px}
 
   /* final cta */
   .final{background:var(--ink);color:var(--bone);padding:160px 0}
@@ -216,9 +250,9 @@
   .sticky.show{opacity:1;transform:translateY(0);pointer-events:auto}
 
   /* modal */
-  .scrim{position:fixed;inset:0;background:rgba(10,9,8,.5);backdrop-filter:blur(6px);z-index:80;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease}
+  .scrim{position:fixed;inset:0;background:rgba(10,9,8,.5);backdrop-filter:blur(6px);z-index:80;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease;overflow-y:auto}
   .scrim.show{opacity:1;pointer-events:auto}
-  .modal{background:var(--bone);color:var(--ink);max-width:560px;width:100%;padding:48px 44px;border-radius:4px;transform:translateY(12px);transition:transform .35s ease}
+  .modal{background:var(--bone);color:var(--ink);max-width:560px;width:100%;padding:48px 44px;border-radius:4px;transform:translateY(12px);transition:transform .35s ease;max-height:calc(100dvh - 40px);overflow-y:auto}
   .scrim.show .modal{transform:translateY(0)}
   .modal h3{font-size:32px;font-weight:400;letter-spacing:-.02em;margin:0 0 8px}
   .modal p.sub{color:var(--muted);font-size:15px;margin:0 0 28px}
@@ -247,11 +281,24 @@
 
   @media (max-width:680px){
     :root{--pad-x:20px;--section:96px}
-    .hero{padding:64px 0 40px}
+    .hero{padding-top:64px;padding-bottom:40px}
     .nav-row{height:64px}
     .modal{padding:36px 24px}
     .row2{grid-template-columns:1fr}
     .final{padding:120px 0}
+    /* floating buttons: keep clear of each other + safe area */
+    .sticky{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:56}
+    .tweaks{left:16px;bottom:calc(16px + env(safe-area-inset-bottom));padding:5px 7px 5px 12px;font-size:10.5px}
+    .tweaks .sw{width:34px;height:20px}
+    html.dark .tweaks .sw .knob{transform:translateX(14px)}
+  }
+  @media (max-width:460px){
+    /* stack the hero enquiry form so it never overflows */
+    .lead-form{flex-direction:column;border-radius:18px;padding:12px;gap:10px}
+    .lead-form input{width:100%;height:46px;text-align:center}
+    .lead-form .btn{width:100%}
+    /* don't let the dark toggle collide with the sticky CTA */
+    .sticky.show ~ .tweaks{display:none}
   }
 </style>
 </head>
@@ -260,6 +307,12 @@
 
 <script type="text/babel" data-presets="react">
 const { useState, useEffect, useRef } = React;
+
+/* ---------- whatsapp ---------- */
+// TODO: replace with the studio's real WhatsApp number (international format, digits only)
+const WA_NUMBER = "971501234567";   // placeholder — fake UAE mobile
+const WA_URL = `https://wa.me/${WA_NUMBER}`;
+const openWhatsApp = ()=> window.open(WA_URL, "_blank", "noopener,noreferrer");
 
 /* ---------- data ---------- */
 const WORKS = [
@@ -341,7 +394,19 @@ function Logo({ className="brand-mark", id="lg" }){
 
 /* ---------- components ---------- */
 function Nav({ onBook }){
+  const [menu,setMenu] = useState(false);
+  const [target,setTarget] = useState(null);
+  const close = ()=> setMenu(false);
+  // scroll only once the menu has actually closed (removed from the fixed overlay)
+  useEffect(()=>{
+    if(!target) return;
+    const el = document.getElementById(target);
+    if(el) el.scrollIntoView({behavior:'auto'});
+    setTarget(null);
+  },[target]);
+  const goTo = (e, id)=>{ e.preventDefault(); setMenu(false); setTarget(id); };
   return (
+    <>
     <header className="nav">
       <div className="container nav-row">
         <nav className="nav-left">
@@ -349,13 +414,39 @@ function Nav({ onBook }){
           <a href="#works">work</a>
           <a href="#process">process</a>
         </nav>
-        <a href="#" className="brand"><Logo id="nav-logo"/>smart renovation</a>
+        <button
+          className={"nav-burger"+(menu?" open":"")}
+          onClick={()=>setMenu(m=>!m)}
+          aria-label={menu?"close menu":"open menu"}
+          aria-expanded={menu}
+        ><span/></button>
+        <a href="#" className="brand" onClick={close}><Logo id="nav-logo"/>smart renovation</a>
         <div className="nav-right">
           <span className="nav-phone">+971 4 000 0000</span>
-          <button className="btn btn-ink btn-sm" onClick={onBook}>book consultation</button>
+          <button className="btn btn-ink btn-sm nav-book" onClick={onBook}>
+            <span className="nav-book-full">book consultation</span>
+            <span className="nav-book-short">book</span>
+          </button>
         </div>
       </div>
     </header>
+      <div className={"mobile-menu"+(menu?" open":"")}>
+        <div className="mm-top">
+          <a href="#" className="brand" onClick={close}><Logo id="mm-logo"/>smart renovation</a>
+          <button className="btn btn-ghost btn-sm" onClick={close} aria-label="close menu">close ✕</button>
+        </div>
+        <nav className="mm-links">
+          <a href="#works" onClick={(e)=>goTo(e,'works')}>work</a>
+          <a href="#services" onClick={(e)=>goTo(e,'services')}>studio</a>
+          <a href="#process" onClick={(e)=>goTo(e,'process')}>process</a>
+          <a href="#faq" onClick={(e)=>goTo(e,'faq')}>faq</a>
+        </nav>
+        <div className="mm-foot">
+          <span className="mm-phone">+971 4 000 0000</span>
+          <button className="btn btn-ink" onClick={()=>{ close(); onBook(); }}>book consultation →</button>
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -366,10 +457,7 @@ function Hero({ onBook }){
         <span className="badge"><span className="pulse"/>accepting 4 residential commissions · q3 2026</span>
         <h1 className="display h1">italian craft.<br/>dubai living.</h1>
         <p className="lede">design-build studio for villas, apartments and offices. one team, one written proposal, one fixed date — from first sketch to final handover.</p>
-        <form className="lead-form" onSubmit={(e)=>{e.preventDefault(); onBook();}}>
-          <input type="email" placeholder="your email address" required/>
-          <button type="submit" className="btn btn-ink">enquire →</button>
-        </form>
+        <a className="btn btn-ink hero-cta" href={WA_URL} target="_blank" rel="noopener noreferrer">book on whatsapp →</a>
         <p className="micro">private 45-min consultation · we reply within 24 hours</p>
       </div>
     </section>
@@ -405,7 +493,7 @@ function HeroCarousel(){
       <div className="slides">
         {HERO_SLIDES.map((s,idx)=>(
           <div key={idx} className={"slide"+(idx===i?" on":"")}>
-            <img src={s.img} alt={s.title} loading={idx===0?"eager":"lazy"} fetchpriority={idx===0?"high":"auto"}/>
+            <img src={s.img} alt={s.title} loading={idx===0?"eager":"lazy"} fetchPriority={idx===0?"high":"auto"}/>
           </div>
         ))}
       </div>
@@ -610,8 +698,8 @@ function FinalCTA({ onBook }){
         <h2>book a 45-minute consultation.</h2>
         <p className="lede">on-site or on zoom. a private conversation about your property, your ambition, and your timeline. you leave with a clear next-step plan — whether you commission us or not.</p>
         <div className="final-cta">
-          <button className="btn btn-bone" onClick={onBook}>book consultation →</button>
-          <a href="https://wa.me/97140000000" className="btn" style={{boxShadow:'inset 0 0 0 1px rgba(255,255,255,.25)',color:'#fff'}}>whatsapp the studio</a>
+          <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn btn-bone">book consultation →</a>
+          <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn" style={{boxShadow:'inset 0 0 0 1px rgba(255,255,255,.25)',color:'#fff'}}>whatsapp the studio</a>
         </div>
         <p className="final-micro">private · we reply within 24 hours</p>
       </div>
@@ -702,7 +790,6 @@ function Tweaks(){
 
 /* ---------- app ---------- */
 function App(){
-  const [open,setOpen] = useState(false);
   const [scrolled,setScrolled] = useState(false);
   useReveal();
   useEffect(()=>{
@@ -710,10 +797,7 @@ function App(){
     window.addEventListener('scroll', onScroll, { passive:true });
     return ()=> window.removeEventListener('scroll', onScroll);
   },[]);
-  useEffect(()=>{
-    document.body.style.overflow = open ? 'hidden' : '';
-  },[open]);
-  const book = ()=> setOpen(true);
+  const book = openWhatsApp;   // every CTA opens a WhatsApp conversation
   return (
     <>
       <Nav onBook={book}/>
@@ -731,7 +815,6 @@ function App(){
       <Footer/>
       <StickyCTA onBook={book} show={scrolled}/>
       <Tweaks/>
-      <Modal open={open} onClose={()=>setOpen(false)}/>
     </>
   );
 }
