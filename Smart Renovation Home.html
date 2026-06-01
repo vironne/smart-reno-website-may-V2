@@ -150,7 +150,9 @@
     /* stronger dark scrim so the white project caption stays readable over light photos */
     .carousel::after{height:64%;background:linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,.4) 42%,rgba(0,0,0,0))}
     .car-meta{left:18px;right:18px;bottom:52px;flex-direction:column;align-items:flex-start;gap:14px}
-    .car-meta .eyebrow,.car-title,.car-sub{text-shadow:0 1px 14px rgba(0,0,0,.55)}
+    /* solid black highlight panel behind the caption text for full legibility */
+    .car-meta>div:first-child{background:rgba(10,9,8,.62);padding:12px 15px;border-radius:10px;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+    .car-meta .eyebrow,.car-title,.car-sub{text-shadow:0 1px 10px rgba(0,0,0,.5)}
     .car-nav{align-self:flex-end}
     .car-dot{height:4px;width:24px}
   }
@@ -781,17 +783,6 @@ function Modal({ open, onClose }){
   );
 }
 
-function Tweaks(){
-  const [dark,setDark] = useState(false);
-  useEffect(()=>{ document.documentElement.classList.toggle('dark', dark); },[dark]);
-  return (
-    <div className="tweaks">
-      <span>dark</span>
-      <div className="sw" onClick={()=>setDark(!dark)}><div className="knob"/></div>
-    </div>
-  );
-}
-
 /* ---------- app ---------- */
 function App(){
   const [scrolled,setScrolled] = useState(false);
@@ -818,7 +809,6 @@ function App(){
       <FinalCTA onBook={book}/>
       <Footer/>
       <StickyCTA onBook={book} show={scrolled}/>
-      <Tweaks/>
     </>
   );
 }
