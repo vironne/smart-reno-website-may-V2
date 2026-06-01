@@ -163,6 +163,12 @@
   .press{display:flex;flex-wrap:wrap;gap:44px;align-items:center}
   .press span{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.04em}
   .licenses{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+  @media (max-width:760px){
+    .trust{padding:44px 0}
+    .trust-row{justify-content:center;text-align:center;gap:22px}
+    .press{justify-content:center;gap:14px 26px;width:100%}
+    .licenses{width:100%;text-align:center}
+  }
 
   /* stats */
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -250,9 +256,13 @@
   .foot-row a{margin-left:22px}
   .foot-row a:hover{color:var(--ink)}
 
-  /* sticky cta */
+  /* sticky cta — whatsapp */
   .sticky{position:fixed;right:24px;bottom:24px;z-index:55;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .35s ease,transform .35s ease}
   .sticky.show{opacity:1;transform:translateY(0);pointer-events:auto}
+  .sticky-wa{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 22px;border-radius:999px;background:#25d366;color:#fff;font-weight:500;font-size:15px;letter-spacing:-.005em;box-shadow:0 8px 24px rgba(0,0,0,.20);transition:background .25s ease,transform .2s ease}
+  .sticky-wa:hover{background:#1ebe5b}
+  .sticky-wa:active{transform:scale(.97)}
+  .sticky-wa svg{width:23px;height:23px;flex:none;fill:#fff}
 
   /* modal */
   .scrim{position:fixed;inset:0;background:rgba(10,9,8,.5);backdrop-filter:blur(6px);z-index:80;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease;overflow-y:auto}
@@ -726,10 +736,13 @@ function Footer(){
   );
 }
 
-function StickyCTA({ onBook, show }){
+function StickyCTA({ show }){
   return (
     <div className={"sticky"+(show?" show":"")}>
-      <button className="btn btn-ink" onClick={onBook}>free consultation →</button>
+      <a className="sticky-wa" href={WA_URL} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.1 7.9L.3 31.7l8-2.1c2.3 1.3 4.9 1.9 7.7 1.9 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.5c-2.5 0-4.9-.7-7-1.9l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.5 20.9 2.8 18.5 2.8 16 2.8 8.7 8.7 2.8 16 2.8S29.2 8.7 29.2 16 23.3 28.9 16 28.9zm7.2-9.6c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2s-1 1.3-1.2 1.5c-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.6.1-.3.1-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.7-.6-.6-.9-.7h-.7c-.2 0-.6.1-.9.5-.3.4-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.5 3.9 6.1 5.4.8.4 1.5.6 2 .8.8.3 1.6.2 2.2.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.1-.3-.2-.7-.4z"/></svg>
+        whatsapp us
+      </a>
     </div>
   );
 }
