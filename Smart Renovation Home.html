@@ -165,8 +165,11 @@
   .licenses{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
   @media (max-width:760px){
     .trust{padding:44px 0}
-    .trust-row{justify-content:center;text-align:center;gap:22px}
-    .press{justify-content:center;gap:14px 26px;width:100%}
+    .trust-row{justify-content:center;text-align:center;gap:18px}
+    .press{justify-content:center;gap:12px 22px;width:100%}
+    .press span{font-size:12px}
+    /* put "featured in" on its own centered line above the logos */
+    .press span:first-child{flex-basis:100%;text-transform:uppercase;letter-spacing:.08em;font-size:11px}
     .licenses{width:100%;text-align:center}
   }
 
@@ -208,6 +211,13 @@
   .svc-note{font-size:14px;color:var(--muted);max-width:32ch;line-height:1.5}
   .svc-dur{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em}
   @media (max-width:860px){.svc{grid-template-columns:1fr;gap:8px;padding:28px 0}.svc-cta{justify-self:start;margin-top:8px}}
+
+  /* tired-of block */
+  .tired-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;border-top:1px solid var(--line);padding-top:48px}
+  .tired-num{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.06em;margin-bottom:18px}
+  .tired-t{font-size:20px;font-weight:500;letter-spacing:-.01em;margin-bottom:8px}
+  .tired-d{font-size:15px;color:var(--muted);line-height:1.55;margin:0}
+  @media (max-width:860px){.tired-grid{grid-template-columns:1fr;gap:30px}}
 
   /* process */
   .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
@@ -347,9 +357,9 @@ const SERVICES = [
 ];
 
 const PROCESS = [
-  { name:"discovery", dur:"stage 01", body:"Property assessment, on-site measurements and a private consultation about your space, ambition and timeline." },
-  { name:"planning", dur:"stage 02", body:"Proposal, technical drawings and permit applications — every detail agreed and approved before we build." },
-  { name:"delivery", dur:"stage 03", body:"Full project management from demolition through finishes to a clean, on-time and on-budget handover." },
+  { name:"discovery stage", dur:"stage 01", body:"We visit your property to assess the space — measurements, structure, light, access. Then we sit with you to understand how you want to live in it, your timeline and your budget." },
+  { name:"planning stage", dur:"stage 02", body:"We deliver a tailored proposal — scope, materials, cost, timeline. Once approved, we produce technical drawings, floor plans and mood boards. Permits handled by us." },
+  { name:"delivery stage", dur:"stage 03", body:"Our team manages the full build — from demolition to finishes, lighting and furniture. Daily on-site checks, in-house quality control and a final walkthrough before handover, on the agreed date." },
 ];
 
 const QUOTES = [
@@ -606,24 +616,29 @@ function Works(){
   );
 }
 
-function Services({ onBook }){
+const TIRED_POINTS = [
+  { t:"budget transparency", d:"A fixed, written proposal up front — no hidden extras, no change-order surprises." },
+  { t:"clear communication", d:"Daily on-site progress checks and one accountable point of contact, start to finish." },
+  { t:"order, clarity & style", d:"Design, permits and build held by one team — spaces that feel effortless and entirely yours." },
+];
+
+function Tired(){
   return (
-    <section id="services" className="services section">
+    <section className="services section">
       <div className="container reveal">
         <div className="sec-head">
           <div>
-            <div className="eyebrow">services · seven practices, one studio</div>
-            <h2 className="h2">seven disciplines, end-to-end.</h2>
+            <div className="eyebrow">why smart renovation</div>
+            <h2 className="h2">designed to solve the renovation headaches you've faced before.</h2>
           </div>
-          <p className="lede" style={{maxWidth:'40ch'}}>design, permits, build and finishing — held by one team. full turnkey delivery, on time and on budget.</p>
+          <p className="lede" style={{maxWidth:'42ch'}}>tired of home renovations in dubai with unreliable contractors? we're here to change that — for a single room or a full transformation.</p>
         </div>
-        <div className="svc-list">
-          {SERVICES.map((s,i)=>(
-            <div key={i} className="svc">
-              <div className="svc-name">{s.name}</div>
-              <div className="svc-note">{s.note}</div>
-              <div className="svc-dur">{s.dur}</div>
-              <a className="btn btn-ghost btn-sm svc-cta" href={"services.html#"+s.slug}>enquire →</a>
+        <div className="tired-grid">
+          {TIRED_POINTS.map((p,i)=>(
+            <div key={i} className="tired-item">
+              <div className="tired-num">0{i+1}</div>
+              <div className="tired-t">{p.t}</div>
+              <p className="tired-d">{p.d}</p>
             </div>
           ))}
         </div>
@@ -638,7 +653,7 @@ function Process(){
       <div className="sec-head">
         <div>
           <div className="eyebrow">how we work · three stages</div>
-          <h2 className="h2">from first visit to handover keys.</h2>
+          <h2 className="h2">the smart renovation process.</h2>
         </div>
         <p className="lede" style={{maxWidth:'40ch'}}>discovery, planning, delivery. you always know what is happening, what is next, and when.</p>
       </div>
@@ -825,7 +840,7 @@ function App(){
       <div style={{height:96}}/>
       <Stats/>
       <Works/>
-      <Services onBook={book}/>
+      <Tired/>
       <Process/>
       <Testimonials/>
       <FAQ/>
