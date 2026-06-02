@@ -366,9 +366,9 @@ const openWhatsApp = ()=> window.open(WA_URL, "_blank", "noopener,noreferrer");
 
 /* ---------- data ---------- */
 const WORKS = [
-  { title:"high-end villa renovation", loc:"Emirates Hills · Dubai", img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80&auto=format&fit=crop", typology:"Private villa", year:"2024" },
-  { title:"office interior fit-out", loc:"DIFC · Dubai", img:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80&auto=format&fit=crop", typology:"Workplace", year:"2024" },
-  { title:"bespoke kitchen renovation", loc:"Downtown · Dubai", img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format&fit=crop", typology:"Residential", year:"2025" },
+  { title:"high-end villa renovation", loc:"Emirates Hills · Dubai", img:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80&auto=format&fit=crop", typology:"Private villa", year:"2024" },
+  { title:"apartment renovation", loc:"Downtown · Dubai", img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80&auto=format&fit=crop", typology:"Apartment", year:"2024" },
+  { title:"bespoke kitchen renovation", loc:"Jumeirah · Dubai", img:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80&auto=format&fit=crop", typology:"Residential", year:"2025" },
   { title:"bespoke landscape design", loc:"Al Barari · Dubai", img:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600&q=80&auto=format&fit=crop", typology:"Garden & terrace", year:"2023" },
 ];
 
@@ -519,11 +519,9 @@ function Hero({ onBook }){
 
 const HERO_SLIDES = [
   { img:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=2400&q=85&auto=format&fit=crop", title:"high-end villa renovation", meta:"private villa · emirates hills, dubai", tag:"villa renovation" },
-  { img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=2400&q=85&auto=format&fit=crop", title:"turnkey interior fit-out", meta:"residential · full turnkey delivery", tag:"interior fit-out" },
-  { img:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=2400&q=85&auto=format&fit=crop", title:"bespoke kitchen renovation", meta:"downtown, dubai · joinery & finishes", tag:"kitchen renovation" },
+  { img:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=2400&q=85&auto=format&fit=crop", title:"apartment renovation", meta:"downtown, dubai · turnkey delivery", tag:"apartment renovation" },
+  { img:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=2400&q=85&auto=format&fit=crop", title:"bespoke kitchen renovation", meta:"jumeirah, dubai · joinery & finishes", tag:"kitchen renovation" },
   { img:"https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=2400&q=85&auto=format&fit=crop", title:"bespoke landscape design", meta:"terrace, garden & pool · al barari", tag:"landscape design" },
-  { img:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=2400&q=85&auto=format&fit=crop", title:"office interior fit-out", meta:"workplace · difc, dubai", tag:"office fit-out" },
-  { img:"https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=2400&q=85&auto=format&fit=crop", title:"retail interior design", meta:"showroom & store fit-out", tag:"retail design" },
 ];
 
 function HeroCarousel(){
@@ -590,10 +588,10 @@ function TrustBar(){
 
 function Stats(){
   const items = [
-    { n:"1970", l:"crafting interiors — italian heritage, dubai roots" },
-    { n:"7", l:"in-house disciplines, one studio" },
-    { n:"6", l:"industry awards won · 2022–2025" },
-    { n:"100%", l:"turnkey — design, permits & build under one roof" },
+    { n:"55 yrs", l:"of italian craftsmanship — europe to dubai" },
+    { n:"100+", l:"in-house team, every discipline under one studio" },
+    { n:"4.9", l:"average rating · google reviews" },
+    { n:"100%", l:"turnkey — delivered on time and on budget" },
   ];
   return (
     <section id="about" className="container reveal" style={{padding:'0 var(--pad-x)'}}>
@@ -614,10 +612,10 @@ function Works(){
     <section id="works" className="section container reveal">
       <div className="sec-head">
         <div>
-          <div className="eyebrow">selected work · residential & commercial</div>
+          <div className="eyebrow">selected work · residential</div>
           <h2 className="h2">interiors built to last, across dubai.</h2>
         </div>
-        <p className="lede" style={{maxWidth:'40ch'}}>villas, homes, offices and retail — full turnkey delivery from design to handover. private site visits available on request.</p>
+        <p className="lede" style={{maxWidth:'40ch'}}>villas, apartments, kitchens and gardens — full turnkey delivery from design to handover. private site visits available on request.</p>
       </div>
       <div className="works-grid">
         {WORKS.map((w,i)=>(
@@ -657,7 +655,7 @@ function Tired(){
             <div className="eyebrow">why smart renovation</div>
             <h2 className="h2">designed to solve the renovation headaches you've faced before.</h2>
           </div>
-          <p className="lede" style={{maxWidth:'42ch'}}>tired of home renovations in dubai with unreliable contractors? we're here to change that — for a single room or a full transformation.</p>
+          <p className="lede" style={{maxWidth:'42ch'}}>tired of home renovations in dubai with unreliable contractors? we're here to change that — in line with the vision you have for your home.</p>
         </div>
         <div className="tired-grid">
           {TIRED_POINTS.map((p,i)=>(

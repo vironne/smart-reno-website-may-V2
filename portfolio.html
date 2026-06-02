@@ -92,7 +92,13 @@
 
   /* filters */
   .port-tools{padding-top:48px}
+  .filter-group{display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:10px 14px;margin-bottom:16px}
+  .filter-label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);width:74px;text-align:right;flex:none}
   .filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  @media (max-width:680px){
+    .filter-group{flex-direction:column;align-items:center;gap:10px;margin-bottom:22px}
+    .filter-label{width:auto;text-align:center}
+  }
   .filter{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:lowercase;border:1px solid var(--line);border-radius:999px;padding:9px 16px;color:var(--muted);background:none;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
   .filter:hover{border-color:var(--ink);color:var(--ink)}
   .filter.active{background:var(--ink);color:var(--bone);border-color:var(--ink)}
@@ -198,14 +204,32 @@
 
 <!-- filters -->
 <section class="port-tools container reveal">
-  <div class="filters">
-    <button class="filter active" data-filter="all">all</button>
-    <button class="filter" data-filter="villa">villa</button>
-    <button class="filter" data-filter="apartment">apartment</button>
-    <button class="filter" data-filter="kitchen">kitchen</button>
-    <button class="filter" data-filter="office">office</button>
-    <button class="filter" data-filter="landscape">landscape</button>
-    <button class="filter" data-filter="retail">retail</button>
+  <div class="filter-group">
+    <span class="filter-label">type</span>
+    <div class="filters">
+      <button class="filter active" data-type="all">all</button>
+      <button class="filter" data-type="villa">villa</button>
+      <button class="filter" data-type="apartment">apartment</button>
+      <button class="filter" data-type="kitchen">kitchen</button>
+      <button class="filter" data-type="office">office</button>
+      <button class="filter" data-type="landscape">landscape</button>
+      <button class="filter" data-type="retail">retail</button>
+    </div>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">location</span>
+    <div class="filters">
+      <button class="filter active" data-loc="all">all</button>
+      <button class="filter" data-loc="palm-jumeirah">palm jumeirah</button>
+      <button class="filter" data-loc="emirates-hills">emirates hills</button>
+      <button class="filter" data-loc="downtown">downtown</button>
+      <button class="filter" data-loc="jumeirah">jumeirah</button>
+      <button class="filter" data-loc="dubai-marina">dubai marina</button>
+      <button class="filter" data-loc="difc">difc</button>
+      <button class="filter" data-loc="business-bay">business bay</button>
+      <button class="filter" data-loc="al-barari">al barari</button>
+      <button class="filter" data-loc="city-walk">city walk</button>
+    </div>
   </div>
   <div class="count" id="count"></div>
 </section>
@@ -214,7 +238,7 @@
 <section class="works-wrap container reveal">
   <div class="works-grid" id="grid">
 
-    <a class="work" data-cat="villa" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
+    <a class="work" data-cat="villa" data-loc="palm-jumeirah" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
       <div class="photo"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400&q=80&auto=format&fit=crop" alt="palm jumeirah villa" loading="lazy"/></div>
       <div class="work-meta">
         <div><div class="work-title">palm jumeirah villa</div><div class="work-loc">Palm Jumeirah · Dubai</div><div class="work-cta">view project</div></div>
@@ -222,7 +246,7 @@
       </div>
     </a>
 
-    <a class="work" data-cat="villa" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
+    <a class="work" data-cat="villa" data-loc="emirates-hills" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
       <div class="photo"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&q=80&auto=format&fit=crop" alt="emirates hills residence" loading="lazy"/></div>
       <div class="work-meta">
         <div><div class="work-title">emirates hills residence</div><div class="work-loc">Emirates Hills · Dubai</div><div class="work-cta">view project</div></div>
@@ -230,7 +254,7 @@
       </div>
     </a>
 
-    <a class="work" data-cat="apartment" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
+    <a class="work" data-cat="apartment" data-loc="palm-jumeirah" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
       <div class="photo"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=80&auto=format&fit=crop" alt="shoreline apartment" loading="lazy"/></div>
       <div class="work-meta">
         <div><div class="work-title">shoreline apartment</div><div class="work-loc">Palm Jumeirah · Dubai</div><div class="work-cta">view project</div></div>
@@ -238,7 +262,7 @@
       </div>
     </a>
 
-    <a class="work" data-cat="apartment" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
+    <a class="work" data-cat="apartment" data-loc="downtown" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
       <div class="photo"><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1400&q=80&auto=format&fit=crop" alt="downtown sky residence" loading="lazy"/></div>
       <div class="work-meta">
         <div><div class="work-title">downtown sky residence</div><div class="work-loc">Downtown · Dubai</div><div class="work-cta">view project</div></div>
@@ -246,7 +270,7 @@
       </div>
     </a>
 
-    <a class="work" data-cat="kitchen" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
+    <a class="work" data-cat="kitchen" data-loc="jumeirah" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
       <div class="photo"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=80&auto=format&fit=crop" alt="bespoke kitchen" loading="lazy"/></div>
       <div class="work-meta">
         <div><div class="work-title">bespoke kitchen</div><div class="work-loc">Jumeirah · Dubai</div><div class="work-cta">view project</div></div>
@@ -254,7 +278,7 @@
       </div>
     </a>
 
-    <a class="work" data-cat="kitchen" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
+    <a class="work" data-cat="kitchen" data-loc="dubai-marina" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
       <div class="photo"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1400&q=80&auto=format&fit=crop" alt="marina kitchen" loading="lazy"/></div>
       <div class="work-meta">
         <div><div class="work-title">marina kitchen</div><div class="work-loc">Dubai Marina · Dubai</div><div class="work-cta">view project</div></div>
@@ -262,7 +286,7 @@
       </div>
     </a>
 
-    <a class="work" data-cat="office" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
+    <a class="work" data-cat="office" data-loc="difc" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
       <div class="photo"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80&auto=format&fit=crop" alt="difc creative office" loading="lazy"/></div>
       <div class="work-meta">
         <div><div class="work-title">difc creative office</div><div class="work-loc">DIFC · Dubai</div><div class="work-cta">view project</div></div>
@@ -270,7 +294,7 @@
       </div>
     </a>
 
-    <a class="work" data-cat="office" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
+    <a class="work" data-cat="office" data-loc="business-bay" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
       <div class="photo"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&q=80&auto=format&fit=crop" alt="business bay office" loading="lazy"/></div>
       <div class="work-meta">
         <div><div class="work-title">business bay office</div><div class="work-loc">Business Bay · Dubai</div><div class="work-cta">view project</div></div>
@@ -278,7 +302,7 @@
       </div>
     </a>
 
-    <a class="work" data-cat="landscape" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
+    <a class="work" data-cat="landscape" data-loc="al-barari" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
       <div class="photo"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1400&q=80&auto=format&fit=crop" alt="al barari garden" loading="lazy"/></div>
       <div class="work-meta">
         <div><div class="work-title">al barari garden</div><div class="work-loc">Al Barari · Dubai</div><div class="work-cta">view project</div></div>
@@ -286,7 +310,7 @@
       </div>
     </a>
 
-    <a class="work" data-cat="retail" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
+    <a class="work" data-cat="retail" data-loc="city-walk" href="https://wa.me/971567990448" target="_blank" rel="noopener noreferrer">
       <div class="photo"><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1400&q=80&auto=format&fit=crop" alt="city walk flagship" loading="lazy"/></div>
       <div class="work-meta">
         <div><div class="work-title">city walk flagship</div><div class="work-loc">City Walk · Dubai</div><div class="work-cta">view project</div></div>
@@ -339,26 +363,39 @@
   menu.querySelectorAll('.mm-links a').forEach(function(a){ a.addEventListener('click', function(){ setOpen(false); }); });
 })();
 (function(){
-  var filters = document.querySelectorAll('.filter');
+  var typeFilters = document.querySelectorAll('.filter[data-type]');
+  var locFilters = document.querySelectorAll('.filter[data-loc]');
   var works = Array.prototype.slice.call(document.querySelectorAll('.work'));
   var count = document.getElementById('count');
-  function apply(cat){
+  var activeType = 'all', activeLoc = 'all';
+  function apply(){
     var n = 0;
     works.forEach(function(w){
-      var show = (cat === 'all' || w.getAttribute('data-cat') === cat);
+      var okType = (activeType === 'all' || w.getAttribute('data-cat') === activeType);
+      var okLoc  = (activeLoc === 'all' || w.getAttribute('data-loc') === activeLoc);
+      var show = okType && okLoc;
       w.classList.toggle('hide', !show);
       if(show) n++;
     });
     count.textContent = n + (n === 1 ? ' selected project' : ' selected projects');
   }
-  filters.forEach(function(f){
+  typeFilters.forEach(function(f){
     f.addEventListener('click', function(){
-      filters.forEach(function(x){ x.classList.remove('active'); });
+      typeFilters.forEach(function(x){ x.classList.remove('active'); });
       f.classList.add('active');
-      apply(f.getAttribute('data-filter'));
+      activeType = f.getAttribute('data-type');
+      apply();
     });
   });
-  apply('all');
+  locFilters.forEach(function(f){
+    f.addEventListener('click', function(){
+      locFilters.forEach(function(x){ x.classList.remove('active'); });
+      f.classList.add('active');
+      activeLoc = f.getAttribute('data-loc');
+      apply();
+    });
+  });
+  apply();
 
   // reveal on scroll
   var els = document.querySelectorAll('.reveal');
