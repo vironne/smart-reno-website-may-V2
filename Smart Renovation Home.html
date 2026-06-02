@@ -236,6 +236,27 @@
   .quote-by{font-size:13.5px}
   .quote-by b{font-weight:500}
   .quote-by span{display:block;color:var(--muted);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;margin-top:4px}
+
+  /* testimonial slider */
+  .tslider{border-top:1px solid var(--line);padding-top:48px}
+  .tslider-vp{position:relative;min-height:170px}
+  .tslide{margin:0;animation:tfade .5s ease}
+  @keyframes tfade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .tslide blockquote{margin:0;font-size:clamp(22px,2.7vw,38px);line-height:1.3;letter-spacing:-.015em;font-weight:400;max-width:30ch}
+  .tslide figcaption{margin-top:30px}
+  .tslider-nav{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:44px;border-top:1px solid var(--line);padding-top:24px}
+  .tdots{display:flex;gap:8px}
+  .tdot{width:30px;height:2px;background:var(--line);border:0;padding:0;cursor:pointer;transition:background .3s}
+  .tdot.on{background:var(--ink)}
+  .tarrows{display:flex;gap:10px}
+  .tarrow{width:46px;height:46px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);font-family:var(--mono);font-size:14px;display:flex;align-items:center;justify-content:center;background:transparent;cursor:pointer;transition:box-shadow .25s,background .25s,color .25s}
+  .tarrow:hover{box-shadow:inset 0 0 0 1px var(--ink);background:var(--ink);color:var(--bone)}
+  @media (max-width:680px){
+    .tslider{padding-top:36px}
+    .tslide blockquote{max-width:none}
+    .tslider-nav{margin-top:32px}
+  }
+
   .google{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-top:64px;padding-top:32px;border-top:1px solid var(--line)}
   .google-rating{display:flex;align-items:baseline;gap:14px}
   .google-rating b{font-size:36px;font-weight:300;letter-spacing:-.02em}
@@ -672,6 +693,16 @@ function Process(){
 }
 
 function Testimonials(){
+  const [i,setI] = useState(0);
+  const [paused,setPaused] = useState(false);
+  const N = QUOTES.length;
+  const touchX = useRef(null);
+  useEffect(()=>{
+    if(paused) return;
+    const t = setTimeout(()=> setI(p => (p+1)%N), 6500);
+    return ()=> clearTimeout(t);
+  },[i,paused,N]);
+  const go = (n)=> setI(((n%N)+N)%N);
   return (
     <section className="section container reveal">
       <div className="sec-head">
@@ -680,13 +711,27 @@ function Testimonials(){
           <h2 className="h2">a few clients, on working with us.</h2>
         </div>
       </div>
-      <div className="quotes">
-        {QUOTES.map((q,i)=>(
-          <div key={i} className="quote">
-            <p>"{q.text}"</p>
-            <div className="quote-by"><b>{q.by}</b><span>{q.meta}</span></div>
+      <div className="tslider"
+        onMouseEnter={()=>setPaused(true)} onMouseLeave={()=>setPaused(false)}
+        onTouchStart={(e)=>{ touchX.current = e.touches[0].clientX; }}
+        onTouchEnd={(e)=>{ if(touchX.current==null) return; const dx = e.changedTouches[0].clientX - touchX.current; if(Math.abs(dx) > 40) go(dx<0 ? i+1 : i-1); touchX.current=null; }}>
+        <div className="tslider-vp">
+          <figure key={i} className="tslide">
+            <blockquote>"{QUOTES[i].text}"</blockquote>
+            <figcaption className="quote-by"><b>{QUOTES[i].by}</b><span>{QUOTES[i].meta}</span></figcaption>
+          </figure>
+        </div>
+        <div className="tslider-nav">
+          <div className="tdots">
+            {QUOTES.map((_,idx)=>(
+              <button key={idx} className={"tdot"+(idx===i?" on":"")} onClick={()=>go(idx)} aria-label={`testimonial ${idx+1}`}/>
+            ))}
           </div>
-        ))}
+          <div className="tarrows">
+            <button className="tarrow" onClick={()=>go(i-1)} aria-label="previous testimonial">←</button>
+            <button className="tarrow" onClick={()=>go(i+1)} aria-label="next testimonial">→</button>
+          </div>
+        </div>
       </div>
       <div className="google">
         <div className="google-rating">
